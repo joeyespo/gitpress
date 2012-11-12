@@ -82,23 +82,23 @@ For example:
 
     /
     +- 2012
-    |    + 01-first.md
-    |    + 02-second.md
-    + index.md     
-    + README.md
+    |    +- 01-first.md
+    |    +- 02-second.md
+    +- index.md     
+    +- README.md
 
 Frequent writers may prefer:
 
     /
     +- 2012
     |    +- 10
-    |    |   + 01-my-first-post.md
-    |    |   + 02-another-in-october.md
+    |    |   +- 01-my-first-post.md
+    |    |   +- 02-another-in-october.md
     |    +- 11
-    |        + 01-movember-has-arrived.md
-    |        + 02-how-to-grow-a-moustache.md
-    + index.md     
-    + README.md
+    |        +- 01-movember-has-arrived.md
+    |        +- 02-how-to-grow-a-moustache.md
+    +- index.md     
+    +- README.md
 
 Both of these examples can re-use the same front-end.
 
