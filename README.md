@@ -15,9 +15,8 @@ Gitpress transforms this
 
 into a living, breathing website.
 
-Gitpress takes full advantage of Git. There's no roles, timestamps, or authors
-mixed with the content by default. This metadata is inferred.
-
+Gitpress takes full advantage of Git. There's no *roles*, *timestamps*, or
+*authors* mixed with the content by default. This metadata is inferred.
 You can customize the layout and theme with an independent **presentation**
 repository, effectively separating your content and presentation concerns.
 
