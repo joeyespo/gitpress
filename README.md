@@ -53,7 +53,52 @@ single host or even a particular blogging platform. You can focus on
 what's most important from day one. Your *writing*.
 
 
-Getting started
----------------
+Getting Started: Writers
+------------------------
 
-*TODO*
+Youl'll begin like you would any other programming project.
+
+1. `mkdir myblog`
+2. `cd myblog`
+3. `git init`
+
+Then create your `README.md` to indicate this is your blog content.
+
+
+File Conventions
+----------------
+
+File organization is extremely flexible. The rules are:
+
+1. Files and directories beginning with a letter are **named**
+3. Files and directories containing numbers without letters are **indexed**
+2. Files and directories beginning with a number,
+   containing letters are **ordered named**
+
+The special characters `!@#$%^&()_-+=,.[]{}'` are allowed and are ignored by the above.
+The rules are sensible for blogging and are used in the lookup process
+described in the next section.
+
+For example:
+
+    /
+    +- 2012
+    |    + 01-first.md
+    |    + 02-second.md
+    + index.md     
+    + README.md
+
+Frequent writers may prefer:
+
+    /
+    +- 2012
+    |    +- 10
+    |    |   + 01-my-first-post.md
+    |    |   + 02-another-in-october.md
+    |    +- 11
+    |        + 01-movember-has-arrived.md
+    |        + 02-how-to-grow-a-moustache.md
+    + index.md     
+    + README.md
+
+Both of these examples can re-use the same front-end.
