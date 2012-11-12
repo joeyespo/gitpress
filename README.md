@@ -101,3 +101,13 @@ Frequent writers may prefer:
     + README.md
 
 Both of these examples can re-use the same front-end.
+
+
+Getting Started: Presenting
+---------------------------
+
+Using the command-line interface, you can either use Gitpress directly to serve your site
+and listen for pushes, or to compile your blog into a static site. Serving with Gitpress
+will generate a static site each deploy, dynamically handling requests where requested.
+
+*TODO*
