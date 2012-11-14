@@ -106,8 +106,8 @@ Both of these examples can re-use the same front-end.
 Getting Started: Presenting
 ---------------------------
 
-Using the command-line interface, you can either use Gitpress directly to serve your site
-and listen for pushes, or to compile your blog into a static site. Serving with Gitpress
-will generate a static site each deploy, dynamically handling requests where requested.
+Gitpress is a Gitpress is a [Python](http://python.org) package that ships with a
+command-line interface. You can serve your content with Gitpress directly,
+preprocess it for another CMS to present, or to compile it into a static site.
 
 *TODO*
