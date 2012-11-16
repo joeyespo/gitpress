@@ -1,7 +1,5 @@
-Gitpress
-========
-
-Beautiful blogging for hackers.
+Gitpress -- Blissful blogging for hackers
+=========================================
 
 Gitpress transforms this
 
@@ -15,10 +13,16 @@ Gitpress transforms this
 
 into a living, breathing website.
 
-Gitpress takes full advantage of Git. There's no *roles*, *timestamps*, or
-*authors* mixed with the content by default. This metadata is inferred.
-You can customize the layout and theme with an independent **presentation**
-repository, effectively separating your content and presentation concerns.
+
+What?
+-----
+
+Gitpress is a collection of tools for working with presentation-less blog
+respositories. Your layout and theme can be customized independently,
+effectively separating your content and presentation concerns.
+
+Gitpress also takes full advantage of Git. There's no *roles*, *timestamps*,
+or *authors* mixed with the content by default. This metadata is inferred.
 
 
 Why?
