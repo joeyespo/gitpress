@@ -35,20 +35,20 @@ up* the blog?
 
 Gitpress is here to help.
 
-#### For new blogs ####
+#### For new blogs
 
 Write first. Publish for review. Iterate your story based on real feedback.
 **All before you deploy**. As a bonus, it's much easier to customize
 the style of your site when you have some content to work with.
 
-#### For collaboration ####
+#### For collaboration
 
 With the power of a distributed version control system, you can host your
 content like any other project and allow your words to evolve socially. Pull
 in corrections, site improvements, or even outsource or fork a front-end
 completely as you write, without bottleneck.
 
-#### For the future ####
+#### For the future
 
 Gitpress was created with the belief that your content and your presentation
 shouldn't mingle. By decoupling these layers, you're no longer locked into a
