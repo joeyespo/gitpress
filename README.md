@@ -67,9 +67,7 @@ Youl'll begin like you would any other programming project.
 
 Then create your `README.md` to indicate this is your blog content.
 
-
-File Conventions
-----------------
+#### File Conventions
 
 File organization is extremely flexible. The rules are:
 
