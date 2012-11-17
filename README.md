@@ -122,7 +122,7 @@ get your work out there. You have a few options.
 
 - Git-push your repository to a host already configured with a layout and theme
 - Pre-process or compile your content for another server or platform to present
-- Read on to see how you can use Gitpress directly
+- Use Gitpress in a web project of your own, for ultimate flexibility
 
 
 Next Steps: Presenting
