@@ -97,21 +97,23 @@ For example:
     +- 2012
     |    +- 01-first.md
     |    +- 02-second.md
-    +- index.md     
     +- README.md
 
-Frequent writers may prefer:
+Daily writers may prefer:
 
     /
     +- 2012
     |    +- 10
     |    |   +- 01-my-first-post.md
-    |    |   +- 02-another-in-october.md
+    |    |   +- 20-another-in-october.md
     |    +- 11
-    |        +- 01-movember-has-arrived.md
-    |        +- 02-how-to-grow-a-moustache.md
-    +- index.md     
+    |        +- 11-movember-has-arrived.md
+    |        +- 14-how-to-grow-a-moustache.md
     +- README.md
+
+What's important is that *you* are comfortable with your files. There's no need
+to get hung up over this. You can easily re-organize without making a mess of
+the permalinks. That's all handled by the presentation.
 
 #### Publishing your blog
 
