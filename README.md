@@ -31,9 +31,7 @@ Why?
 How many times have you put off writing because you couldn't settle on a CMS?
 Or wanted to switch services, but felt overwhelmed by the amount of work
 involved? Have you ever been inspired to write but then wasted it on *setting
-up* the blog?
-
-Gitpress is here to help.
+up* the blog? Gitpress is here to help.
 
 #### For new blogs
 
@@ -59,13 +57,18 @@ what's most important from day one. Your *writing*.
 Getting Started: Writing
 ------------------------
 
-Youl'll begin like you would any other programming project.
+You'll begin like you would any other programming project:
 
 1. `mkdir myblog`
 2. `cd myblog`
 3. `git init`
 
-Then create your `README.md` to indicate this is your blog content.
+You should also create a `README.md` file if you're feeling generous,
+indicating this repository contains the content of your blog.
+
+Now you can begin writing. A new Markdown file for each blog post. Commit normally.
+Push to publish. The only requirement is that you prefix any files or directories
+that you want shown in a particular order with a number. Read on for more details.
 
 #### File conventions
 
