@@ -35,8 +35,8 @@ up* the blog? Gitpress is here to help.
 
 #### For new blogs
 
-Write first. Publish for review. Iterate your story based on real feedback.
-**All before you deploy**. As a bonus, it's much easier to customize
+Write first. Git-push for review and comments. Iterate your story based on real
+feedback. **All before you publish**. As a bonus, it's much easier to customize
 the style of your site when you have some content to work with.
 
 #### For collaboration
