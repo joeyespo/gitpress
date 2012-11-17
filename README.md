@@ -107,8 +107,10 @@ Daily writers may prefer:
     |    |   +- 01-my-first-post.md
     |    |   +- 20-another-in-october.md
     |    +- 11
-    |        +- 11-movember-has-arrived.md
-    |        +- 14-how-to-grow-a-moustache.md
+    |        +- 01-movember-has-arrived.md
+    |        +- 11-growing-a-moustache.md
+    |        +- 18-wheres-my-moustache.md
+    |        +- 28-moustache-finally-arrived.md
     +- README.md
 
 What's important is that *you* are comfortable with your files. There's no need
