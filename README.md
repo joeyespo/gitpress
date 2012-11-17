@@ -56,7 +56,7 @@ single host or even a particular blogging platform. You can focus on
 what's most important from day one. Your *writing*.
 
 
-Getting Started: Writers
+Getting Started: Writing
 ------------------------
 
 Youl'll begin like you would any other programming project.
@@ -67,7 +67,7 @@ Youl'll begin like you would any other programming project.
 
 Then create your `README.md` to indicate this is your blog content.
 
-#### File Conventions
+#### File conventions
 
 File organization is extremely flexible. The rules are:
 
@@ -105,8 +105,8 @@ Frequent writers may prefer:
 Both of these examples can re-use the same front-end.
 
 
-Getting Started: Presenting
----------------------------
+Next Steps: Presenting
+----------------------
 
 Gitpress is a Gitpress is a [Python](http://python.org) package that ships with a
 command-line interface. You can serve your content with Gitpress directly,
