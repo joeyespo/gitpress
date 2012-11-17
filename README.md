@@ -21,8 +21,8 @@ Gitpress is a collection of tools for working with presentation-less blog
 respositories. Your layout and theme can be customized independently,
 effectively separating your content and presentation concerns.
 
-Gitpress also takes full advantage of Git. There's no *roles*, *timestamps*,
-or *authors* mixed with the content by default. This metadata is inferred.
+Gitpress also takes full advantage of git. There's no *roles*, *timestamps*, or
+*authors* mixed in with your content by default. This metadata is all inferred.
 
 
 Why?
