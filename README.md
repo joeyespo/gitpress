@@ -105,7 +105,14 @@ Frequent writers may prefer:
     +- index.md     
     +- README.md
 
-Both of these examples can re-use the same front-end.
+#### Publishing your blog
+
+Now that you have a simple repository and some amazing content, it's time to really
+get your work out there. You have a few options.
+
+- Git-push your repository to a host already configured with a layout and theme
+- Pre-process or compile your content for another server or platform to present
+- Read on to see how you can use Gitpress directly
 
 
 Next Steps: Presenting
