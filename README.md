@@ -115,7 +115,9 @@ What's important is that *you* are comfortable with your files. There's no need
 to get hung up over this. You can easily re-organize without making a mess of
 the permalinks. That's all handled by the presentation.
 
-#### Publishing your blog
+
+Next Steps: Presenting
+----------------------
 
 Now that you have a simple repository and some amazing content, it's time to really
 get your work out there. You have a few options.
@@ -124,12 +126,12 @@ get your work out there. You have a few options.
 - Pre-process or compile your content for another server or platform to present
 - Use Gitpress in a web project of your own, for ultimate flexibility
 
+The first option can be done using git. So let's explore the other two.
 
-Next Steps: Presenting
-----------------------
+#### The command-line interface
 
-Gitpress is a Gitpress is a [Python](http://python.org) package that ships with a
-command-line interface. You can serve your content with Gitpress directly,
-preprocess it for another CMS to present, or to compile it into a static site.
+*TODO*
+
+#### The Gitpress API
 
 *TODO*
