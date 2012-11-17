@@ -59,9 +59,9 @@ Getting Started: Writing
 
 You'll begin like you would any other programming project:
 
-1. `mkdir myblog`
-2. `cd myblog`
-3. `git init`
+    $ mkdir myblog
+    $ cd myblog
+    $ git init
 
 You should also create a `README.md` file if you're feeling generous,
 indicating this repository contains the content of your blog.
