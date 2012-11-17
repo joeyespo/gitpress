@@ -50,8 +50,8 @@ completely as you write, without bottleneck.
 
 Gitpress was created with the belief that your content and your presentation
 shouldn't mingle. By decoupling these layers, you're no longer locked into a
-single host or even a particular blogging platform. You can focus on
-what's most important from day one. Your *writing*.
+single host, particular blogging platform, or even how you organize your files.
+You can focus on what's most important from day one. *Your writing*.
 
 
 Getting Started: Writing
