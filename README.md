@@ -132,6 +132,6 @@ The first option can be done using git. So let's explore the other two.
 
 *TODO*
 
-#### The Gitpress API
+#### The Python API
 
 *TODO*
