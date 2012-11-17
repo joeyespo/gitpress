@@ -66,9 +66,17 @@ You'll begin like you would any other programming project:
 You should also create a `README.md` file if you're feeling generous,
 indicating this repository contains the content of your blog.
 
-Now you can begin writing. A new Markdown file for each blog post. Commit normally.
-Push to publish. The only requirement is that you prefix any files or directories
-that you want shown in a particular order with a number. Read on for more details.
+Now you can begin writing. Create a new Markdown file for each blog post.
+Commit normally. Push to publish. The only requirement is that you prefix
+any files or directories that you want shown in a particular order with a
+number. You may want a directory for each year:
+
+    /
+    +- 2012
+        +- 01-my-first-post.md
+
+That way you don't end up with too many files in one place as
+your story unfolds.
 
 #### File conventions
 
