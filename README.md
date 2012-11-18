@@ -115,8 +115,9 @@ Daily writers may prefer:
     +- README.md
 
 What's important is that *you* are comfortable with your files. There's no need
-to get hung up over this. You can easily re-organize without making a mess of
-the permalinks. That's all handled by the presentation.
+to get hung up over this. Start with something simple. Reorganize later, moving
+your posts into month-based sub-directories. And you can do this without making
+a mess of your permalinks, since that's all handled by your presentation layer.
 
 
 Next Steps: Presenting
