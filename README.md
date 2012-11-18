@@ -18,7 +18,7 @@ What?
 -----
 
 Gitpress is a collection of tools for working with presentation-less blog
-respositories. Your layout and theme can be customized independently,
+repositories. Your layout and theme can be customized independently,
 effectively separating your content and presentation concerns.
 
 Gitpress also takes full advantage of git. There's no *roles*, *timestamps*, or
