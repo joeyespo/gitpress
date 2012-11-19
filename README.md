@@ -130,7 +130,7 @@ get your work out there. You have a few options.
 - Pre-process or compile your content for another server or platform to present
 - Use Gitpress in a web project of your own, for ultimate flexibility
 
-The first option can be done using git. So let's explore the other two.
+The first option can be done using git alone. So let's explore the other two.
 
 #### The command-line interface
 
