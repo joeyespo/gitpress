@@ -123,19 +123,67 @@ a mess of your permalinks, since that's all handled by your presentation layer.
 Next Steps: Presenting
 ----------------------
 
-Now that you have a simple repository and some amazing content, it's time to really
-get your work out there. You have a few options.
+Now that you have a simple repository containing some amazing content, it's
+time to get your work out there. There's a few options.
 
-- Git-push your repository to a host already configured with a layout and theme
-- Pre-process or compile your content for another server or platform to present
-- Use Gitpress in a web project of your own, for ultimate flexibility
+#### Deploy with Git
 
-The first option can be done using git alone. So let's explore the other two.
+Simply push your work to an existing Gitpress server:
+
+    $ git push mysite
 
 #### The command-line interface
 
+Install Gitpress using [pip][]:
+
+    $ pip install gitpress
+
+You can preview your working directory without committing anything:
+
+    $ gitpress preview
+     * Running on http://localhost:5000/
+
+This uses the default presentation configuration by default. Locate the admin
+page from there to change the layout and theme.
+
+
+Setting up a Gitpress Server
+----------------------------
+
+There's no command-line interface to fully serve a Gitpress website. Instead,
+you'll need to create a small Python web script that imports Gitpress. This
+allows server projects to include their own dependencies and optimizations.
+You can also override the functionality of any of the components as needed.
+
+The simplest thing to do is let Gitpress listen for a push and handle the rest:
+
+```python
+import gitpress
+
+if __name__ == '__main__':
+    gitpress.run(port=8080)
+```
+
+Save the above to a file called `server.py` and run it:
+
+    $ python server.py
+     * Running on http://localhost:8080/
+
+To see your blog in action, Git-push to localhost. For example:
+
+    git clone git@github.com:joeyespo/gitpress-blog.git
+    cd gitpress
+    git push git://localhost/
+
+Like the preview, you can further configure Gitpress by visiting the Admin page
+of your blog with the browser. You can also configure Gitpress directly using
+the API, or design it to consume its own command-line arguments. The next
+section goes into more detail and demonstrates the flexibility of the API.
+
+
+The Python API
+--------------
+
 *TODO*
 
-#### The Python API
-
-*TODO*
+[pip]: http://pypi.python.org/pypi/pip
