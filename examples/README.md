@@ -1,9 +1,10 @@
 Gitpress Examples
 =================
 
-Each subdirectory here contains an example project that uses Gitpress.
+Each subdirectory here contains an example **server project** that uses the
+Gitpress API.
 
-Looking for example blogs? They're in the **branches** of this repository. Try:
+Looking for example **blogs**? They're in the branches of this repository. Try:
 
     $ git checkout hello-blog
 
