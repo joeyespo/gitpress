@@ -5,7 +5,7 @@ The command-line interface of Gitpress.
 Usage:
   gitpress preview [<path>] [<address>]
   gitpress -h | --help
-  gitpress -v | --version
+  gitpress --version
 
 Where:
   <path> is the path to the working directory of a content repository
