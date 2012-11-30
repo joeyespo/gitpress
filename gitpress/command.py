@@ -46,7 +46,9 @@ def main(initial_args=None):
 
 
 def _resolve_address(path_or_address, address=None):
-    """Returns (path, host, port) based on consecutive optional arguments, [path] [address]."""
+    """Returns (path, address) based on consecutive optional arguments, [path] [address]."""
+    # TODO: return (path, host, port)
+
     if path_or_address is None or address is not None:
         return path_or_address, address
 
