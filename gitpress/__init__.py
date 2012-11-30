@@ -24,6 +24,6 @@ __license__ = 'MIT'
 __copyright__ = 'Copyright 2012 Joe Esposito'
 
 
-from .server import preview
 from .runner import run
+from .server import preview
 from .helpers import parse_address
