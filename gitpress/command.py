@@ -18,7 +18,8 @@ Options:
 
 import sys
 from docopt import docopt
-from .server import preview, resolve_address, parse_address, valid_address
+from .helpers import resolve_address, parse_address, valid_address
+from .server import preview
 from . import __version__
 
 
