@@ -23,5 +23,3 @@ __copyright__ = 'Copyright 2012 Joe Esposito'
 
 from .server import preview
 from .helper import run
-
-full_version = 'Gitpress ' + __version__

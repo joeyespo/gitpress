@@ -18,15 +18,16 @@ Options:
 
 import sys
 from docopt import docopt
-from . import full_version
 from .server import preview, resolve_address, parse_address, valid_address
+from . import __version__
 
 
 def main(initial_args=None):
     """The entry point of the application."""
     if initial_args is None:
         initial_args = sys.argv[1:]
-    args = docopt(__doc__, argv=initial_args, version=full_version)
+    version = 'Gitpress ' + __version__
+    args = docopt(__doc__, argv=initial_args, version=version)
 
     if args['preview']:
         path, address = resolve_address(args['<path>'], args['<address>'])
