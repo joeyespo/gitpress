@@ -10,16 +10,18 @@ def read(fname):
 
 setup(
     name=package.__name__,
+    version=package.__version__,
+    description=package.__description__,
+    long_description=package.__doc__,
     author='Joe Esposito',
     author_email='joe@joeyespo.com',
     url='http://github.com/joeyespo/gitpress',
     license='MIT',
-    version=package.__version__,
-    description=package.__description__,
-    long_description=package.__doc__,
     platforms='any',
     packages=find_packages(),
     package_data={package.__name__: ['LICENSE']},
-    entry_points={'console_scripts': ['gitpress = gitpress.command:main']},
+    include_package_data=True,
     install_requires=read('requirements.txt'),
+    zip_safe=False,
+    entry_points={'console_scripts': ['gitpress = gitpress.command:main']},
 )
