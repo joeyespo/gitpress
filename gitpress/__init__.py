@@ -11,6 +11,9 @@ Links
 * `Website <http://gitpress.com/>`_
 * `Documentation <http://gitpress.com/docs>`_
 * `Source code <https://github.com/joeyespo/gitpress>`_
+
+:copyright: (c) 2012 by Joe Esposito.
+:license: MIT, see LICENSE for more details.
 """
 
 __title__ = 'gitpress'
@@ -23,3 +26,4 @@ __copyright__ = 'Copyright 2012 Joe Esposito'
 
 from .server import preview
 from .runner import run
+from .helpers import parse_address

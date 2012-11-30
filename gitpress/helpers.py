@@ -1,4 +1,3 @@
-import os
 import re
 
 
@@ -8,20 +7,6 @@ def parse_address(address):
     host = address
     port = None
     return host, port
-
-
-def resolve_address(path_or_address, address=None):
-    """Returns (path, address) based on two optional arguments [path] [address]."""
-    if path_or_address is None or address is not None:
-        return path_or_address, address
-
-    path = None
-    if not valid_address(path_or_address) or os.path.exists(path_or_address):
-        path = path_or_address
-    else:
-        address = path_or_address
-
-    return path, address
 
 
 def valid_address(address):

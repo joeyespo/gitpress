@@ -1,6 +1,9 @@
 """\
-command.py
-The command-line interface of Gitpress.
+gitpress.command
+~~~~~~~~~~~~~~~~
+
+Implements the command-line interface of Gitpress.
+
 
 Usage:
   gitpress preview [<path>] [<address>]
@@ -16,9 +19,10 @@ Options:
   --version         Show version.
 """
 
+import os
 import sys
 from docopt import docopt
-from .helpers import resolve_address, parse_address, valid_address
+from .helpers import parse_address, valid_address
 from .server import preview
 from . import __version__
 
@@ -28,13 +32,28 @@ def main(initial_args=None):
     if initial_args is None:
         initial_args = sys.argv[1:]
     version = 'Gitpress ' + __version__
-    args = docopt(__doc__, argv=initial_args, version=version)
+    usage = '\n\n\n'.join(__doc__.split('\n\n\n')[1:])
+    args = docopt(usage, argv=initial_args, version=version)
 
     if args['preview']:
-        path, address = resolve_address(args['<path>'], args['<address>'])
+        path, address = _resolve_address(args['<path>'], args['<address>'])
         if address and not valid_address(address):
             print 'Error: Invalid address', repr(address)
         host, port = parse_address(address)
         return preview(working_directory=path, host=host, port=port)
 
     return 0
+
+
+def _resolve_address(path_or_address, address=None):
+    """Returns (path, host, port) based on consecutive optional arguments, [path] [address]."""
+    if path_or_address is None or address is not None:
+        return path_or_address, address
+
+    path = None
+    if not valid_address(path_or_address) or os.path.exists(path_or_address):
+        path = path_or_address
+    else:
+        address = path_or_address
+
+    return path, address
