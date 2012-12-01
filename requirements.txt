@@ -1,2 +1,3 @@
 docopt>=5.0
+misaka>=1.0
 flask>=0.8

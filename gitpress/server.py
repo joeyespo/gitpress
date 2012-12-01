@@ -1,4 +1,5 @@
 import os
+import misaka as m
 from flask import Flask, render_template, abort
 
 
@@ -48,7 +49,8 @@ class _Page:
         self.title = self.url.replace('-', ' ').title()
         self.content = _read_file(self.fullpath)
         # TODO: Use smarter content cutoff
-        self.summary = self.content[:300]
+        self.summary = m.html(self.content[:300])
+        self.content = m.html(self.content)
 
 
 def _page_for(pages, slug):
