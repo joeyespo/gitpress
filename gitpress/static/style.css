@@ -30,7 +30,7 @@ nav {
 }
 
 .site {
-  margin: 24px auto;
+  margin: 4px auto;
   width: 500px;
 }
 
@@ -44,4 +44,8 @@ nav {
 
 .index-page article h1 {
   font-size: 24px;
+}
+
+.generic-page {
+  margin-top: 24px;
 }
