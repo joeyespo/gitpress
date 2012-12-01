@@ -20,6 +20,11 @@ a:hover {
   text-decoration: underline;
 }
 
+p {
+  margin: 16px 0;
+}
+
+/* TODO: style the navigation */
 nav {
   display: none;
 }
