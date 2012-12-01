@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Gitpress{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('.static', filename='reset.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('.static', filename='style.css') }}" />
+  {% block styles %}{% endblock %}
+  {% block priority_scripts %}{% endblock %}
+</head>
+<body>
+  <div class="site">
+    <section>
+      <header>
+        <h1>{{ self.title() }}</h1>
+      </header>
+
+      <nav>
+        <ul>
+          <li> <a href="/">Home</a> </li>
+        </ul>
+      </nav>
+
+      <div class="page">
+        {% block page %}{% endblock %}
+      </div>
+    </section>
+  <div>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
