@@ -19,7 +19,7 @@ setup(
     license='MIT',
     platforms='any',
     packages=find_packages(),
-    package_data={package.__name__: ['LICENSE']},
+    package_data={package.__name__: ['LICENSE', 'static/*', 'templates/*']},
     include_package_data=True,
     install_requires=read('requirements.txt'),
     zip_safe=False,
