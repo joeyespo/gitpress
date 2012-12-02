@@ -34,7 +34,7 @@ def preview(working_directory=None, host=None, port=None):
         return render_template('page.html', site_title=site_title, page=page)
 
     # Run local server
-    app.run(app.config['HOST'], app.config['PORT'], debug=app.config['DEBUG'], use_reloader=app.config['DEBUG_GITPRESS'])
+    app.run(app.config['HOST'], app.config['PORT'], debug=app.debug, use_reloader=app.config['DEBUG_GITPRESS'])
 
 
 class _Page:
