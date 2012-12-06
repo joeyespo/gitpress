@@ -6,7 +6,7 @@ Gitpress API.
 
 Looking for example **blogs**? They're in the branches of this repository. Try:
 
-    $ git checkout hello-blog
+    $ git checkout example-blog
 
 
 Summary

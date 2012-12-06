@@ -17,7 +17,7 @@ To try it, simply clone the repo, install the requirements, and run the script:
 You can now push a blog repository to localhost with git.
 For example, using your local copy of Gitpress:
 
-    $ git push git://localhost/ hello-blog:master
+    $ git push git://localhost/ example-blog:master
 
 Now visit [http://localhost:5000][localhost] in your browser.
 
