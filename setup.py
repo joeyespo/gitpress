@@ -8,8 +8,8 @@ Blissful blogging for hackers.
 Links
 `````
 
-* `Website <http://gitpress.com/>`_
-* `Documentation <http://gitpress.com/docs>`_
+* `Website <http://gitpress.com>`_
+* `Documentation <http://docs.gitpress.com>`_
 * `Source code <https://github.com/joeyespo/gitpress>`_
 
 :copyright: (c) 2012 by Joe Esposito.
