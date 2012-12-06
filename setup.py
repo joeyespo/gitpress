@@ -4,7 +4,6 @@ Gitpress
 
 Blissful blogging for hackers.
 
-
 Links
 `````
 
@@ -12,13 +11,7 @@ Links
 * `Documentation <http://docs.gitpress.com>`_
 * `Source code <https://github.com/joeyespo/gitpress>`_
 
-:copyright: (c) 2012 by Joe Esposito.
-:license: MIT, see LICENSE for more details.
 """
-
-__version__ = '0.1'
-__description__ = '\n\n'.join(__doc__.split('\n\n')[1:]).split('\n\n\n')[0]
-
 
 import os
 from setuptools import setup, find_packages
@@ -31,8 +24,8 @@ def read(fname):
 
 setup(
     name='gitpress',
-    version=__version__,
-    description=__description__,
+    version='0.1',
+    description='Blissful blogging for hackers.',
     long_description=__doc__,
     author='Joe Esposito',
     author_email='joe@joeyespo.com',
