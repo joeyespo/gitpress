@@ -13,10 +13,6 @@ Usage:
 Where:
   <path> is the path to the working directory of a content repository
   <address> is what to listen on, of the form <host>[:<port>] or just <port>
-
-Options:
-  -h --help         Show this screen.
-  --version         Show version.
 """
 
 import os
