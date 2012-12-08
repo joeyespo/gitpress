@@ -22,7 +22,7 @@ Options:
 import os
 import sys
 from docopt import docopt
-from .helpers import parse_address, valid_address
+from .helpers import valid_address
 from .server import preview
 from . import __version__
 
@@ -39,7 +39,7 @@ def main(initial_args=None):
         path, address = _resolve_address(args['<path>'], args['<address>'])
         if address and not valid_address(address):
             print 'Error: Invalid address', repr(address)
-        host, port = parse_address(address)
+        host, port = _split_address(address)
         return preview(working_directory=path, host=host, port=port)
 
     return 0
@@ -47,7 +47,6 @@ def main(initial_args=None):
 
 def _resolve_address(path_or_address, address=None):
     """Returns (path, address) based on consecutive optional arguments, [path] [address]."""
-    # TODO: return (path, host, port)
 
     if path_or_address is None or address is not None:
         return path_or_address, address
@@ -59,3 +58,11 @@ def _resolve_address(path_or_address, address=None):
         address = path_or_address
 
     return path, address
+
+
+def _split_address(address):
+    """Returns (host, port) from the specified address."""
+    # TODO: implement
+    host = address
+    port = None
+    return host, port

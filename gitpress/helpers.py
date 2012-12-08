@@ -1,14 +1,6 @@
 import re
 
 
-def parse_address(address):
-    """Returns (host, port) from the specified address."""
-    # TODO: implement
-    host = address
-    port = None
-    return host, port
-
-
 def valid_address(address):
     """Determines whether the specified address string is valid."""
     if not address:
