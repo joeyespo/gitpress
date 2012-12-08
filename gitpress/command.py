@@ -23,13 +23,13 @@ from .server import preview
 from . import __version__
 
 
-def main(initial_args=None):
+def main(args=None):
     """The entry point of the application."""
-    if initial_args is None:
-        initial_args = sys.argv[1:]
-    version = 'Gitpress ' + __version__
+    if args is None:
+        args = sys.argv[1:]
     usage = '\n\n\n'.join(__doc__.split('\n\n\n')[1:])
-    args = docopt(usage, argv=initial_args, version=version)
+    version = 'Gitpress ' + __version__
+    args = docopt(usage, argv=args, version=version)
 
     if args['preview']:
         path, address = _resolve_address(args['<path>'], args['<address>'])
