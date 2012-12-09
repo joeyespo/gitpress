@@ -34,7 +34,6 @@ setup(
     platforms='any',
     packages=find_packages(),
     package_data={'': ['LICENSE'], 'gitpress': ['static/*', 'templates/*']},
-    include_package_data=True,
     install_requires=read('requirements.txt'),
     zip_safe=False,
     entry_points={'console_scripts': ['gitpress = gitpress.command:main']},
