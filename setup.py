@@ -4,6 +4,7 @@ Gitpress
 
 Blissful blogging for hackers.
 
+
 Links
 `````
 
@@ -14,7 +15,13 @@ Links
 """
 
 import os
+import sys
 from setuptools import setup, find_packages
+
+
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py sdist upload')
+    sys.exit()
 
 
 def read(fname):
