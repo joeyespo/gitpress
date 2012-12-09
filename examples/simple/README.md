@@ -9,10 +9,12 @@ Usage
 
 To try it, simply clone the repo, install the requirements, and run the script:
 
-    $ git clone git@github.com:joeyespo/gitpress.git
-    $ cd gitpress/examples/simple
-    $ pip install -r requirements.txt
-    $ python simple.py
+```bash
+$ git clone git@github.com:joeyespo/gitpress.git
+$ cd gitpress/examples/simple
+$ pip install -r requirements.txt
+$ python simple.py
+```
 
 You can now push a blog repository to localhost with git.
 For example, using your local copy of Gitpress:
