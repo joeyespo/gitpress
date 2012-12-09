@@ -44,7 +44,7 @@ def main(args=None):
     if args['preview']:
         try:
             return preview(working_directory=path, host=host, port=port)
-        except ValueError, ex:
+        except ValueError as ex:
             print 'Error:', ex
             return 1
 
