@@ -6,6 +6,10 @@ from flask import Flask, render_template, abort
 def preview(working_directory=None, host=None, port=None):
     """Runs a local server to preview the working directory of a repository."""
 
+    # Check for working directory
+    if working_directory and not os.path.isdir(working_directory):
+        raise ValueError('Directory not found: ' + repr(working_directory))
+
     # Flask application
     app = Flask('gitpress')
     app.config.from_pyfile('default_config.py')
