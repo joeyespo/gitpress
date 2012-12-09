@@ -15,10 +15,9 @@ Where:
   <address> is what to listen on, of the form <host>[:<port>] or just <port>
 """
 
-import os
 import sys
+from path_and_address import resolve, split_address
 from docopt import docopt
-from .helpers import valid_address
 from .server import preview
 from . import __version__
 
@@ -29,36 +28,24 @@ def main(args=None):
         args = sys.argv[1:]
     usage = '\n\n\n'.join(__doc__.split('\n\n\n')[1:])
     version = 'Gitpress ' + __version__
+
+    # Parse options
     args = docopt(usage, argv=args, version=version)
 
+    # Parse arguments
+    path, address = resolve(args['<path>'], args['<address>'])
+    host, port = split_address(address)
+
+    # Validate address
+    if address and not host and not port:
+        print 'Error: Invalid address', repr(address)
+
+    # Run command
     if args['preview']:
-        path, address = _resolve_address(args['<path>'], args['<address>'])
-        if address and not valid_address(address):
-            print 'Error: Invalid address', repr(address)
-        host, port = _split_address(address)
-        return preview(working_directory=path, host=host, port=port)
+        try:
+            return preview(working_directory=path, host=host, port=port)
+        except ValueError, ex:
+            print 'Error:', ex
+            return 1
 
     return 0
-
-
-def _resolve_address(path_or_address, address=None):
-    """Returns (path, address) based on consecutive optional arguments, [path] [address]."""
-
-    if path_or_address is None or address is not None:
-        return path_or_address, address
-
-    path = None
-    if not valid_address(path_or_address) or os.path.exists(path_or_address):
-        path = path_or_address
-    else:
-        address = path_or_address
-
-    return path, address
-
-
-def _split_address(address):
-    """Returns (host, port) from the specified address."""
-    # TODO: implement
-    host = address
-    port = None
-    return host, port
