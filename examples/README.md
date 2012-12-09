@@ -20,10 +20,10 @@ Summary
 More Examples
 -------------
 
-Take a look at the [server's source code][gitpress.com] for a working
+Take a look at the [blog server's source code][blog.gitpress.com] for a working
 example and [the blog repository][gitpress-blog] for the content it presents.
 
 
 [simple]: simple/
-[gitpress.com]: https://github.com/joeyespo/gitpress.com
+[blog.gitpress.com]: https://github.com/joeyespo/blog.gitpress.com
 [gitpress-blog]: https://github.com/joeyespo/gitpress-blog
