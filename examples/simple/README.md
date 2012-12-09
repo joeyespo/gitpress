@@ -21,7 +21,7 @@ For example, using your local copy of Gitpress:
 
     $ git push git://localhost/ example-blog:master
 
-Now visit [http://localhost:5000][localhost] in your browser.
+Now visit `http://localhost:5000` in your browser.
+
 
 [repo]: https://github.com/joeyespo/gitpress
-[localhost]: http://localhost:5000/
