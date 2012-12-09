@@ -1,5 +1,5 @@
 import os
-import misaka as m
+from markdown2 import markdown
 from flask import Flask, render_template, abort
 
 
@@ -53,8 +53,8 @@ class _Page:
         self.title = self.url.replace('-', ' ').title()
         self.content = _read_file(self.fullpath)
         # TODO: Use smarter content cutoff
-        self.summary = m.html(self.content[:300])
-        self.content = m.html(self.content)
+        self.summary = markdown(self.content[:300])
+        self.content = markdown(self.content)
 
 
 def _page_for(pages, slug):
