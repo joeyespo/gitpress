@@ -13,4 +13,3 @@ __version__ = '0.2'
 
 from . import command
 from .runner import run
-from .server import preview
