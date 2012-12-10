@@ -4,7 +4,15 @@ Gitpress Examples
 Each subdirectory here contains an example **server project** that uses the
 Gitpress API.
 
-Looking for example **blogs**? They're in the branches of this repository. Try:
+Note that these are examples of advanced uses. Most projects can simply:
+
+```bash
+$ gitpress serve <content-url> [<theme-url>]
+```
+
+#### Were you looking for example blogs?
+
+They're in the branches of this repository. Try:
 
 ```bash
 $ git checkout example-blog
