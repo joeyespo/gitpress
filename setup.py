@@ -31,7 +31,7 @@ def read(fname):
 
 setup(
     name='gitpress',
-    version='0.2',
+    version='0.3',
     description='Blissful blogging for hackers.',
     long_description=__doc__,
     author='Joe Esposito',

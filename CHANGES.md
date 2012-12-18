@@ -1,6 +1,12 @@
 Gitpress Changelog
 ==================
 
+Version 0.3 (2012-12-16)
+------------------------
+
+- Switch to markdown2 for pure-Python portability
+
+
 Version 0.2 (2012-12-08)
 ------------------------
 
