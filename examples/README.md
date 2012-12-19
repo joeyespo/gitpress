@@ -32,6 +32,6 @@ Take a look at the [blog server's source code][server] for a working
 example and [the blog repository][content] for the content it presents.
 
 
-[simple]: simple/
+[simple]: examples/simple/
 [server]: https://github.com/joeyespo/gitpress-blog/tree/blog.gitpress.com
 [content]: https://github.com/joeyespo/gitpress-blog
