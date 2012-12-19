@@ -155,6 +155,8 @@ you'll need to create a small Python web script that imports Gitpress. This
 allows server projects to include their own dependencies and optimizations.
 You can also override the functionality of any of the components as needed.
 
+*Note: this feature is still [in development](#4), planned for future release.*
+
 The simplest thing to do is let Gitpress listen for a push and handle the rest:
 
 ```python
