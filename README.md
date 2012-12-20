@@ -168,14 +168,18 @@ if __name__ == '__main__':
 
 Save the above to a file called `server.py` and run it:
 
-    $ python server.py
-     * Running on http://localhost:8080/
+```bash
+$ python server.py
+ * Running on http://localhost:8080/
+```
 
 To see your blog in action, Git-push to localhost. For example:
 
-    git clone git@github.com:joeyespo/gitpress-blog.git
-    cd gitpress
-    git push git://localhost/
+```bash
+git clone git@github.com:joeyespo/gitpress-blog.git
+cd gitpress
+git push git://localhost/
+```
 
 Like the preview, you can further configure Gitpress by visiting the Admin page
 of your blog with the browser. You can also configure Gitpress directly using
