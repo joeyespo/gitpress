@@ -155,7 +155,9 @@ you'll need to create a small Python web script that imports Gitpress. This
 allows server projects to include their own dependencies and optimizations.
 You can also override the functionality of any of the components as needed.
 
-*Note: this feature is still [in development](#4), planned for future release.*
+### Push-based
+
+*Note: this feature is [being designed](#4), planned for a future release.*
 
 The simplest thing to do is let Gitpress listen for a push and handle the rest:
 
@@ -181,6 +183,28 @@ cd gitpress
 git push git://localhost/
 ```
 
+### Pull-based
+
+*Note: this feature is still [being developed](#3), planned for next release.*
+
+Pull-based is similar to push-based, only you'll provide the repository to pull
+from, guaranteeing it comes from the right place. You'll be able to trigger a
+pull manually from the Admin interface or by setting up [post-receive hooks][].
+
+```python
+import gitpress
+
+if __name__ == '__main__':
+    gitpress.run('http://github.com/joeyespo/gitpress-blog.git')
+```
+
+Save the above to a file called `pull_server.py` and run it:
+
+```bash
+$ python pull_server.py
+ * Running on http://localhost:5000/
+```
+
 Like the preview, you can further configure Gitpress by visiting the Admin page
 of your blog with the browser. You can also configure Gitpress directly using
 the API, or design it to consume its own command-line arguments. The next
@@ -192,4 +216,6 @@ The Python API
 
 *TODO*
 
+
 [pip]: http://pypi.python.org/pypi/pip
+[post-receive hooks]: https://help.github.com/articles/post-receive-hooks
