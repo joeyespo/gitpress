@@ -205,6 +205,20 @@ $ python pull_server.py
  * Running on http://localhost:5000/
 ```
 
+### External servers
+
+To use with external powerhouse servers, you'll need to expose the WSGI
+application object. Do this by instantiating the `Server` object directly:
+
+```python
+import gitpress
+
+app = gitpress.Server('http://github.com/joeyespo/gitpress-blog.git')
+
+if __name__ == '__main__':
+    app.run(port=8080)
+```
+
 ### Configuration
 
 Like the preview, you can further configure Gitpress by visiting the Admin page
