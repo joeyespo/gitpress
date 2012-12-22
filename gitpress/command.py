@@ -49,3 +49,11 @@ def main(args=None):
             return 1
 
     return 0
+
+
+def preview_command(args=None):
+    """Shortcut function for running the previewing command."""
+    if args is None:
+        args = sys.argv[1:]
+    args.insert(0, 'preview')
+    return main(args)
