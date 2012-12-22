@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ site_title }}{% endblock %}
+{% block title %}{{ site_title or base() }}{% endblock %}
 
 {% block page %}
   <div class="index-page">

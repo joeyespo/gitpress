@@ -18,7 +18,7 @@ Where:
 import sys
 from path_and_address import resolve, split_address
 from docopt import docopt
-from .server import preview
+from .previewer import preview
 from . import __version__
 
 
