@@ -205,6 +205,8 @@ $ python pull_server.py
  * Running on http://localhost:5000/
 ```
 
+### Configuration
+
 Like the preview, you can further configure Gitpress by visiting the Admin page
 of your blog with the browser. You can also configure Gitpress directly using
 the API, or design it to consume its own command-line arguments. The next
