@@ -157,7 +157,7 @@ You can also override the functionality of any of the components as needed.
 
 ### Push-based
 
-*Note: this feature is [being designed](#4), planned for a future release.*
+*Note: this feature is [being designed][#4], planned for a future release.*
 
 The simplest thing to do is let Gitpress listen for a push and handle the rest:
 
@@ -185,7 +185,7 @@ git push git://localhost/
 
 ### Pull-based
 
-*Note: this feature is still [being developed](#3), planned for next release.*
+*Note: this feature is still [being developed][#3], planned for next release.*
 
 Pull-based is similar to push-based, only you'll provide the repository to pull
 from, guaranteeing it comes from the right place. You'll be able to trigger a
@@ -235,3 +235,5 @@ The Python API
 
 [pip]: http://pypi.python.org/pypi/pip
 [post-receive hooks]: https://help.github.com/articles/post-receive-hooks
+[#3]: https://github.com/joeyespo/gitpress/issues/3
+[#4]: https://github.com/joeyespo/gitpress/issues/4
