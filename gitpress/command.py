@@ -16,8 +16,8 @@ Where:
 """
 
 import sys
-from path_and_address import resolve, split_address
 from docopt import docopt
+from path_and_address import resolve, split_address
 from .previewer import preview
 from . import __version__
 
