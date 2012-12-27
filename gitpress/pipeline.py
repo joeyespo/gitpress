@@ -8,19 +8,15 @@ def run(content_url=None, presentation_url=None, target_path=None):
     """Runs the Gitpress Pipeline on over the specified content and theme repositories."""
     is_temp = target_path is None
 
-    # Validate target directory
-    if not is_temp:
-        target_path = os.path.abspath(target_path)
-        if not os.path.isdir(target_path):
-            raise ValueError('Target directory not found: ' + repr(target_path))
-        if not os.listdir(target_path):
-            raise ValueError('Target directory not empty: ' + repr(target_path))
-        is_temp = False
-    elif not target_path:
-        is_temp = True
-
-    try:
+    if is_temp:
         target_path = tempfile.mkdtemp()
+    elif not os.path.isdir(target_path):
+            raise ValueError('Target directory not found: ' + repr(target_path))
+    elif not os.listdir(target_path):
+            raise ValueError('Target directory not empty: ' + repr(target_path))
+
+    target_path = os.path.abspath(target_path)
+    try:
         _apply_pipeline(target_path, content_url, presentation_url)
     finally:
         if is_temp:
