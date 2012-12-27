@@ -51,7 +51,7 @@ def main(args=None):
     return 0
 
 
-def preview_command(args=None):
+def gpp(args=None):
     """Shortcut function for running the previewing command."""
     if args is None:
         args = sys.argv[1:]

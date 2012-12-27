@@ -43,5 +43,5 @@ setup(
     package_data={'': ['LICENSE'], 'gitpress': ['static/*', 'templates/*']},
     install_requires=read('requirements.txt'),
     zip_safe=False,
-    entry_points={'console_scripts': ['gitpress = gitpress.command:main', 'gpp = gitpress.command:preview_command']},
+    entry_points={'console_scripts': ['gitpress = gitpress.command:main', 'gpp = gitpress.command:gpp']},
 )
