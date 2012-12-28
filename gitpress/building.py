@@ -56,8 +56,6 @@ def build(working_directory=None, out_directory=None):
         else:
             _copydir(default_theme_path, temp_theme_path)
         # TODO: implement
-    except Exception as ex:
-        print 'Error:', type(ex), ex
     finally:
         try:
             shutil.rmtree(temp_theme_path)
