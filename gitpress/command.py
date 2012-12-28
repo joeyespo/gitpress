@@ -7,6 +7,7 @@ Implements the command-line interface of Gitpress.
 
 Usage:
   gitpress preview [<path>] [<address>]
+  gitpress build [<path>]
   gitpress -h | --help
   gitpress --version
 
@@ -19,6 +20,7 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .previewing import preview
+from .building import build
 from . import __version__
 
 
@@ -31,19 +33,26 @@ def main(args=None):
 
     # Parse options
     args = docopt(usage, argv=args, version=version)
+    path = args['<path>']
 
-    # Parse arguments
-    path, address = resolve(args['<path>'], args['<address>'])
-    host, port = split_address(address)
-
-    # Validate address
-    if address and not host and not port:
-        print 'Error: Invalid address', repr(address)
-
-    # Run command
+    # Preview command
     if args['preview']:
+        path, address = resolve(path, args['<address>'])
+        host, port = split_address(address)
+
+        if address and not host and not port:
+            print 'Error: Invalid address', repr(address)
+
         try:
             return preview(working_directory=path, host=host, port=port)
+        except ValueError as ex:
+            print 'Error:', ex
+            return 1
+
+    # Build command
+    if args['build']:
+        try:
+            return build(path)
         except ValueError as ex:
             print 'Error:', ex
             return 1
