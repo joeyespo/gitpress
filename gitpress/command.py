@@ -6,14 +6,18 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
-  gitpress preview [<path>] [<address>]
-  gitpress build [<path>]
+  gitpress preview [options] [<path>] [<address>]
+  gitpress build [options] [<path>]
   gitpress -h | --help
   gitpress --version
 
-Where:
-  <path> is the path to the working directory of a content repository
-  <address> is what to listen on, of the form <host>[:<port>] or just <port>
+Options:
+  -o, --out <path>  Use the specified relative path to render to.
+
+Notes:
+  The <address> can take the form <host>[:<port>] or just <port>.
+  Previewing content will use the built-in default theme.
+  Previewing a theme will use the built-in default blog.
 """
 
 import sys
@@ -52,7 +56,7 @@ def main(args=None):
     # Build command
     if args['build']:
         try:
-            return build(path)
+            return build(path, args['--out'])
         except ValueError as ex:
             print 'Error:', ex
             return 1
