@@ -6,6 +6,7 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
+  gitpress init [-q] [<directory>]
   gitpress preview [--out <dir>] [<path>] [<address>]
   gitpress build [--out <dir>] [<path>]
 
@@ -20,6 +21,7 @@ Notes:
 import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
+from .present import init, RepositoryAlreadyExistsError
 from .previewing import preview
 from .building import build
 from . import __version__
@@ -37,7 +39,15 @@ def main(argv=None):
     path = args['<path>']
 
     # Execute command
-    if args['preview']:
+    if args['init']:
+        try:
+            repo = init(args['<directory>'])
+            print 'Initialized Gitpress repository in', repo
+        except RepositoryAlreadyExistsError as ex:
+            if not args['-q']:
+                print 'Gitpress repository already exists in', ex.repo
+        return 0
+    elif args['preview']:
         path, address = resolve(path, args['<address>'])
         host, port = split_address(address)
         if address and not host and not port:
