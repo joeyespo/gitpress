@@ -1,19 +1,12 @@
 import os
 import subprocess
+from .helpers import copy_files
 
 
 repo_dir = '.gitpress'
 config_file = '_config.json'
-default_config = """\
-{
-    "title": "",
-    "author": "",
-    "theme": "default",
-    "plugins": {},
-    "include": [],
-    "exclude": []
-}
-"""
+templates_path = os.path.join(os.path.dirname(__file__), 'templates')
+default_template_path = os.path.join(templates_path, 'default')
 
 
 class RepositoryAlreadyExistsError(Exception):
@@ -50,12 +43,13 @@ def init(directory=None):
     if os.path.isdir(repo):
         raise RepositoryAlreadyExistsError(directory, repo)
 
-    # Create presentation repository with initial content
-    subprocess.call(['git', 'init', '-q', repo])
+    # Create repository with default template
+    copy_files(default_template_path, repo)
 
-    with open(os.path.join(repo, config_file), 'w') as f:
-        f.write(default_config)
+    # Initialize repository
+    message = '"Default presentation content."'
+    subprocess.call(['git', 'init', '-q', repo])
     subprocess.call(['git', 'add', '.'], cwd=repo)
-    subprocess.call(['git', 'commit', '-q', '-m', '"Default presentation."'], cwd=repo)
+    subprocess.call(['git', 'commit', '-q', '-m', message], cwd=repo)
 
     return repo
