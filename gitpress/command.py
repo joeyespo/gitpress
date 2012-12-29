@@ -26,15 +26,15 @@ from .building import build
 from . import __version__
 
 
-def main(args=None):
+def main(argv=None):
     """The entry point of the application."""
-    if args is None:
-        args = sys.argv[1:]
+    if argv is None:
+        argv = sys.argv[1:]
     usage = '\n\n\n'.join(__doc__.split('\n\n\n')[1:])
     version = 'Gitpress ' + __version__
 
     # Parse options
-    args = docopt(usage, argv=args, version=version)
+    args = docopt(usage, argv=argv, version=version)
     path = args['<path>']
 
     # Preview command
@@ -62,9 +62,9 @@ def main(args=None):
     return 0
 
 
-def gpp(args=None):
+def gpp(argv=None):
     """Shortcut function for running the previewing command."""
-    if args is None:
-        args = sys.argv[1:]
-    args.insert(0, 'preview')
-    return main(args)
+    if argv is None:
+        argv = sys.argv[1:]
+    argv.insert(0, 'preview')
+    return main(argv)
