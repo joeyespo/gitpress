@@ -44,19 +44,11 @@ def main(argv=None):
         if address and not host and not port:
             print 'Error: Invalid address', repr(address)
 
-        try:
-            return preview(working_directory=path, host=host, port=port)
-        except ValueError as ex:
-            print 'Error:', ex
-            return 1
+        return preview(working_directory=path, host=host, port=port)
 
     # Build command
     if args['build']:
-        try:
-            return build(path, args['--out'])
-        except ValueError as ex:
-            print 'Error:', ex
-            return 1
+        return build(path, args['--out'])
 
     return 1
 
