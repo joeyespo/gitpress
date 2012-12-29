@@ -8,11 +8,11 @@ Implements the command-line interface of Gitpress.
 Usage:
   gitpress preview [options] [<path>] [<address>]
   gitpress build [options] [<path>]
-  gitpress -h | --help
-  gitpress --version
 
 Options:
   -o, --out <path>  Use the specified relative path to render to.
+  -h --help         Show this help.
+  --version         Show version.
 
 Notes:
   The <address> can take the form <host>[:<port>] or just <port>.
