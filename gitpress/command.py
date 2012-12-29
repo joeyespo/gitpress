@@ -15,7 +15,7 @@ Options:
   --version         Show version.
 
 Notes:
-  The <address> can take the form <host>[:<port>] or just <port>.
+  <address> can take the form <host>[:<port>] or just <port>.
 """
 
 import sys
