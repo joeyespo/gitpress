@@ -6,9 +6,9 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
-  gitpress init [-q] [<directory>]
   gitpress preview [--out <dir>] [<path>] [<address>]
   gitpress build [--out <dir>] [<path>]
+  gitpress init [-q] [<directory>]
 
 Options:
   -h --help         Show this help.
