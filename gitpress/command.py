@@ -16,8 +16,6 @@ Options:
 
 Notes:
   The <address> can take the form <host>[:<port>] or just <port>.
-  Previewing content will use the built-in default theme.
-  Previewing a theme will use the built-in default blog.
 """
 
 import sys
