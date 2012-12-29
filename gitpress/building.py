@@ -1,9 +1,9 @@
 import os
-import errno
 import shutil
 import tempfile
 from git import Repo
 from .config import content_config
+from .helpers import copy_files
 
 
 default_theme_path = os.path.join(os.path.dirname(__file__), 'themes', 'default')
@@ -54,7 +54,7 @@ def build(working_directory=None, out_directory=None):
                 else:
                     print 'Warning: No branch "%s"' % theme_branch
         else:
-            _copydir(default_theme_path, temp_theme_path)
+            copy_files(default_theme_path, temp_theme_path)
         # TODO: implement
     finally:
         try:
@@ -62,16 +62,6 @@ def build(working_directory=None, out_directory=None):
         except Exception as ex:
             print 'Warning: Could not clean up theme cache directory (%s)' % temp_theme_path
             print '        ', ex
-
-
-def _copydir(source, dest):
-    """Copies the contents of one directory to another."""
-    try:
-        shutil.copytree(source, dest)
-    except OSError as exc:
-        if exc.errno != errno.ENOTDIR:
-            raise
-        shutil.copy(source, dest)
 
 
 def create_temp_dir():
