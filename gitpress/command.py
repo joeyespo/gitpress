@@ -6,7 +6,7 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
-  gitpress preview [--out <dir>] [--cache_only] [<address>]
+  gitpress preview [--out <dir>] [<path>] [<address>]
   gitpress build [--out <dir>] [<path>]
 
 Options:
