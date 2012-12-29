@@ -59,7 +59,7 @@ def main(argv=None):
             print 'Error:', ex
             return 1
 
-    return 0
+    return 1
 
 
 def gpp(argv=None):
