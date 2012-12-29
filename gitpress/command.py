@@ -6,11 +6,10 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
-  gitpress preview [options] [<path>] [<address>]
-  gitpress build [options] [<path>]
+  gitpress preview [--out <dir>] [--cache_only] [<address>]
+  gitpress build [--out <dir>] [<path>]
 
 Options:
-  -o, --out <path>  Use the specified relative path to render to.
   -h --help         Show this help.
   --version         Show version.
 
