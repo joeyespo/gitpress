@@ -36,18 +36,14 @@ def main(argv=None):
     args = docopt(usage, argv=argv, version=version)
     path = args['<path>']
 
-    # Preview command
+    # Execute command
     if args['preview']:
         path, address = resolve(path, args['<address>'])
         host, port = split_address(address)
-
         if address and not host and not port:
             print 'Error: Invalid address', repr(address)
-
         return preview(working_directory=path, host=host, port=port)
-
-    # Build command
-    if args['build']:
+    elif args['build']:
         return build(path, args['--out'])
 
     return 1
