@@ -81,7 +81,7 @@ def execute(args):
             except ThemeNotFoundError as ex:
                 print 'Error: Theme %s is not currently installed.' % repr(theme)
                 return 1
-            message = 'Switched to theme %s.' if switched else 'Already using %s.'
+            message = 'Switched to theme %s' if switched else 'Already using %s'
             print message % repr(theme)
         elif args['install']:
             # TODO: implement
