@@ -34,14 +34,18 @@ def from_file(config_file):
         return json.load(f)
 
 
-def get_value(key):
+def get_value(key, expect_type=None):
     """Gets the value of the specified key in the config file."""
     repo = require_repo()
     path = os.path.join(repo, config_file)
 
     with open(path, 'r') as f:
         config = json.load(f, object_pairs_hook=OrderedDict)
-    return config.get(key)
+    value = config.get(key)
+    if expect_type and value is not None and not isinstance(value, expect_type):
+        raise ConfigSchemaError('Expected config variable %s to be type %s, got %s'
+            % (repr(key), repr(expect_type), repr(type(value))))
+    return value
 
 
 def set_value(key, value, strict=True):
