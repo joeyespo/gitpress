@@ -38,7 +38,6 @@ def main(argv=None):
 
     # Parse options
     args = docopt(usage, argv=argv, version=version)
-    path = args['<path>']
 
     # Execute command
     if args['init']:
@@ -50,13 +49,13 @@ def main(argv=None):
                 print 'Gitpress repository already exists in', ex.repo
         return 0
     elif args['preview']:
-        path, address = resolve(path, args['<address>'])
+        path, address = resolve(args['<path>'], args['<address>'])
         host, port = split_address(address)
         if address and not host and not port:
             print 'Error: Invalid address', repr(address)
         return preview(working_directory=path, host=host, port=port)
     elif args['build']:
-        return build(path, args['--out'])
+        return build(args['<path>'], args['--out'])
     elif args['themes']:
         # TODO: implement
         if args['use']:
