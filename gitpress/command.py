@@ -9,7 +9,7 @@ Usage:
   gitpress preview [--out <dir>] [<path>] [<address>]
   gitpress build [--out <dir>] [<path>]
   gitpress init [-q] [<directory>]
-  gitpress themes [(use | install | uninstall) <theme>]
+  gitpress themes [use <theme> | install <theme> | uninstall <theme>]
 
 Options:
   -h --help         Show this help.
