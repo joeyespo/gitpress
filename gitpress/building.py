@@ -3,7 +3,7 @@ import shutil
 import tempfile
 from git import Repo
 from .config import content_config
-from .helpers import copy_dir
+from .helpers import copy_file_tree
 
 
 default_theme_path = os.path.join(os.path.dirname(__file__), 'themes', 'default')
@@ -54,7 +54,7 @@ def build(directory=None, out_directory=None):
                 else:
                     print 'Warning: No branch "%s"' % theme_branch
         else:
-            copy_dir(default_theme_path, temp_theme_path)
+            copy_file_tree(default_theme_path, temp_theme_path)
         # TODO: implement
     finally:
         try:

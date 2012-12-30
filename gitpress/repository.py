@@ -2,7 +2,7 @@ import os
 import re
 import fnmatch
 import subprocess
-from .helpers import copy_dir
+from .helpers import copy_file_tree
 
 
 repo_dir = '.gitpress'
@@ -49,7 +49,7 @@ def init(directory=None):
         raise RepositoryAlreadyExistsError(directory, repo)
 
     # Initialize repository with default template
-    copy_dir(default_template_path, repo)
+    copy_file_tree(default_template_path, repo)
 
     message = '"Default presentation content."'
     subprocess.call(['git', 'init', '-q', repo])
