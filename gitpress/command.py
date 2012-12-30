@@ -6,8 +6,8 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
-  gitpress preview [--out <dir>] [<path>] [<address>]
-  gitpress build [--out <dir>] [<path>]
+  gitpress preview [--out <dir>] [<directory>] [<address>]
+  gitpress build [--out <dir>] [<directory>]
   gitpress init [-q] [<directory>]
   gitpress themes [use <theme> | install <theme> | uninstall <theme>]
   gitpress plugins [add <plugin> | remove [-f] <plugin>]
@@ -62,14 +62,14 @@ def execute(args):
         return 0
 
     if args['preview']:
-        path, address = resolve(args['<path>'], args['<address>'])
+        directory, address = resolve(args['<directory>'], args['<address>'])
         host, port = split_address(address)
         if address and not host and not port:
             print 'Error: Invalid address', repr(address)
-        return preview(working_directory=path, host=host, port=port)
+        return preview(directory, host=host, port=port)
 
     if args['build']:
-        return build(args['<path>'], args['--out'])
+        return build(args['<directory>'], args['--out'])
 
     if args['themes']:
         theme = args['<theme>']
