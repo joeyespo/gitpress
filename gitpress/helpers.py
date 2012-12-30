@@ -1,3 +1,4 @@
+import os
 import errno
 import shutil
 
@@ -11,6 +12,19 @@ def copy_dir(source, dest):
         if exc.errno != errno.ENOTDIR:
             raise
         shutil.copy2(source, dest)
+
+
+def copy_files(source_files, target_directory, source_directory=None):
+    """Copies a list of files to the specified directory.
+    If source_directory is provided, it will be prepended to each source file."""
+    try:
+        os.makedirs(target_directory)
+    except:     # TODO: specific exception?
+        pass
+    for f in source_files:
+        source = os.path.join(source_directory, f) if source_directory else f
+        target = os.path.join(target_directory, f)
+        shutil.copy2(source, target)
 
 
 def yes_or_no(message):
