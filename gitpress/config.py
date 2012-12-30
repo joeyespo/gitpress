@@ -4,7 +4,7 @@ try:
     import simplejson as json
 except ImportError:
     import json
-from .present import require_repo
+from .repository import require_repo
 
 
 config_file = '_config.json'

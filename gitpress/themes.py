@@ -1,5 +1,5 @@
 import os
-from .present import require_repo
+from .repository import require_repo
 from .config import set_value
 
 

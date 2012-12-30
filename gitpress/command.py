@@ -24,7 +24,7 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .config import ConfigSchemaError
-from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
+from .repository import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
 from .themes import list_themes, use_theme, ThemeNotFoundError
