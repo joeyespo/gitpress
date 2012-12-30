@@ -68,7 +68,8 @@ def presentation_files(directory=None, excludes=None, includes=None):
 def iterate_presentation_files(directory=None, excludes=None, includes=None):
     """Iterates the repository presentation files relative to 'directory',
     not including themes. Note that 'includes' take priority."""
-    repo = require_repo(directory)
+
+    # Defaults
     if includes is None:
         includes = []
     if excludes is None:
@@ -90,8 +91,8 @@ def iterate_presentation_files(directory=None, excludes=None, includes=None):
             and not excludes_re.match(path))
 
     # Get a filtered list of paths to be built
-    for root, dirs, files in os.walk(repo):
+    for root, dirs, files in os.walk(directory):
         dirs[:] = [d for d in dirs if included(root, d)]
         files = [f for f in files if included(root, f)]
         for f in files:
-            yield os.path.join(root, f)
+            yield os.path.relpath(os.path.join(root, f), directory)
