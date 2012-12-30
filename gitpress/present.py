@@ -18,7 +18,9 @@ class RepositoryAlreadyExistsError(Exception):
 
 class RepositoryNotFoundError(Exception):
     """Indicates an existing 'present_dir' is required, but was not found."""
-    pass
+    def __init__(self, directory=None):
+        super(RepositoryNotFoundError, self).__init__()
+        self.directory = os.path.abspath(directory) if directory else os.getcwd()
 
 
 def require_repo(directory=None):
@@ -27,7 +29,7 @@ def require_repo(directory=None):
         raise ValueError('Directory not found: ' + repr(directory))
     repo = repo_path(directory)
     if not os.path.isdir(repo):
-        raise RepositoryNotFoundError()
+        raise RepositoryNotFoundError(directory)
     return repo
 
 
