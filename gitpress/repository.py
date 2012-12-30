@@ -59,14 +59,14 @@ def init(directory=None):
     return repo
 
 
-def presentation_files(directory=None, excludes=None, includes=None):
-    """Gets a list of the repository presentation files relative to 'directory',
+def presentation_files(path=None, excludes=None, includes=None):
+    """Gets a list of the repository presentation files relative to 'path',
     not including themes. Note that 'includes' take priority."""
-    return list(iterate_presentation_files(directory, excludes, includes))
+    return list(iterate_presentation_files(path, excludes, includes))
 
 
-def iterate_presentation_files(directory=None, excludes=None, includes=None):
-    """Iterates the repository presentation files relative to 'directory',
+def iterate_presentation_files(path=None, excludes=None, includes=None):
+    """Iterates the repository presentation files relative to 'path',
     not including themes. Note that 'includes' take priority."""
 
     # Defaults
@@ -83,17 +83,17 @@ def iterate_presentation_files(directory=None, excludes=None, includes=None):
 
     def included(root, name):
         """Returns True if the specified file is a presentation file."""
-        path = os.path.join(root, name)
+        full_path = os.path.join(root, name)
         # Explicitly included files takes priority
-        if includes_re.match(path):
+        if includes_re.match(full_path):
             return True
         # Ignore special and excluded files
         return (not specials_re.match(name)
-            and not excludes_re.match(path))
+            and not excludes_re.match(full_path))
 
     # Get a filtered list of paths to be built
-    for root, dirs, files in os.walk(directory):
+    for root, dirs, files in os.walk(path):
         dirs[:] = [d for d in dirs if included(root, d)]
         files = [f for f in files if included(root, f)]
         for f in files:
-            yield os.path.relpath(os.path.join(root, f), directory)
+            yield os.path.relpath(os.path.join(root, f), path)
