@@ -34,6 +34,16 @@ def from_file(config_file):
         return json.load(f)
 
 
+def get_value(key):
+    """Gets the value of the specified key in the config file."""
+    repo = require_repo()
+    path = os.path.join(repo, config_file)
+
+    with open(path, 'r') as f:
+        config = json.load(f, object_pairs_hook=OrderedDict)
+    return config.get(key)
+
+
 def set_value(key, value, strict=True):
     """Sets the value of a particular key in the config file. This has no effect when setting to the same value."""
     if value is None:

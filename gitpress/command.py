@@ -10,6 +10,7 @@ Usage:
   gitpress build [--out <dir>] [<path>]
   gitpress init [-q] [<directory>]
   gitpress themes [use <theme> | install <theme> | uninstall <theme>]
+  gitpress plugins
 
 Options:
   -h --help         Show this help.
@@ -27,6 +28,7 @@ from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
 from .themes import list_themes, use_theme, ThemeNotFoundError
+from .plugins import list_plugins
 from . import __version__
 
 
@@ -94,6 +96,23 @@ def execute(args):
                 print '  ' + '\n  '.join(themes)
             else:
                 print 'No themes installed.'
+        return 0
+
+    if args['plugins']:
+        plugin = args['<plugin>']
+        if args['add']:
+            # TODO: implement
+            raise NotImplementedError()
+        elif args['remove']:
+            # TODO: implement
+            raise NotImplementedError()
+        else:
+            plugins = list_plugins()
+            if plugins:
+                print 'Installed plugins:'
+                print '  ' + '\n  '.join(plugins)
+            else:
+                print 'No plugins installed.'
         return 0
 
     return 1
