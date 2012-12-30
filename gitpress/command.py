@@ -25,6 +25,7 @@ from path_and_address import resolve, split_address
 from .present import init, RepositoryAlreadyExistsError
 from .previewing import preview
 from .building import build
+from .themes import list_themes
 from . import __version__
 
 
@@ -65,7 +66,8 @@ def main(argv=None):
         elif args['uninstall']:
             pass
         else:
-            pass
+            themes = list_themes()
+            print '\n '.join(themes) if themes else 'No themes installed.'
 
     return 1
 
