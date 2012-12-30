@@ -111,11 +111,11 @@ def execute(args):
             print message % repr(plugin)
         elif args['remove']:
             try:
-                added = remove_plugin(plugin)
+                removed = remove_plugin(plugin)
             except ConfigSchemaError as ex:
                 print 'Error: Could not modify config:', ex
                 return 1
-            message = ('Removed plugin %s' if added else
+            message = ('Removed plugin %s' if removed else
                 'Plugin %s has already been removed.')
             print message % repr(plugin)
         else:
