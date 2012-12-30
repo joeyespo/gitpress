@@ -10,7 +10,7 @@ Usage:
   gitpress build [--out <dir>] [<path>]
   gitpress init [-q] [<directory>]
   gitpress themes [use <theme> | install <theme> | uninstall <theme>]
-  gitpress plugins [add <plugin> | remove <plugin>]
+  gitpress plugins [add <plugin> | remove [-f] <plugin>]
 
 Options:
   -h --help         Show this help.
@@ -28,7 +28,8 @@ from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
 from .themes import list_themes, use_theme, ThemeNotFoundError
-from .plugins import list_plugins, add_plugin, remove_plugin
+from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
+from .helpers import yes_or_no
 from . import __version__
 
 
@@ -110,6 +111,11 @@ def execute(args):
                 'Plugin %s has already been added.')
             print message % repr(plugin)
         elif args['remove']:
+            settings = get_plugin_settings(plugin)
+            if not args['-f'] and settings and isinstance(settings, dict):
+                warning = 'Plugin %s contains settings. Remove?' % repr(plugin)
+                if not yes_or_no(warning):
+                    return 0
             try:
                 removed = remove_plugin(plugin)
             except ConfigSchemaError as ex:

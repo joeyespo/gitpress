@@ -29,3 +29,9 @@ def remove_plugin(plugin):
     del plugins[plugin]
     set_value('plugins', plugins)
     return True
+
+
+def get_plugin_settings(plugin):
+    """Gets the settings for the specified plugin."""
+    plugins = get_value('plugins')
+    return plugins.get(plugin) if isinstance(plugins, dict) else None
