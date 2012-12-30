@@ -66,7 +66,11 @@ def main(argv=None):
             pass
         else:
             themes = list_themes()
-            print '\n '.join(themes) if themes else 'No themes installed.'
+            if themes:
+                print 'Installed themes:'
+                print '  ' + '\n  '.join(themes)
+            else:
+                print 'No themes installed.'
 
     return 1
 
