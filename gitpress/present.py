@@ -4,7 +4,6 @@ from .helpers import copy_files
 
 
 repo_dir = '.gitpress'
-config_file = '_config.json'
 templates_path = os.path.join(os.path.dirname(__file__), 'templates')
 default_template_path = os.path.join(templates_path, 'default')
 
@@ -13,7 +12,7 @@ class RepositoryAlreadyExistsError(Exception):
     """Indicates 'repo_dir' already exists while attempting to create a new one."""
     def __init__(self, directory=None, repo=None):
         super(RepositoryAlreadyExistsError, self).__init__()
-        self.directory = os.path.abspath(directory or '.')
+        self.directory = os.path.abspath(directory) if directory else os.getcwd()
         self.repo = repo or repo_path(self.directory)
 
 
@@ -34,19 +33,18 @@ def require_repo(directory=None):
 
 def repo_path(directory=None):
     """Gets the presentation repository from the specified directory."""
-    return os.path.join(directory or '.', repo_dir)
+    return os.path.join(directory, repo_dir) if directory else repo_dir
 
 
 def init(directory=None):
     """Initializes a Gitpress presentation repository at the specified directory."""
-    repo = os.path.abspath(repo_path(directory))
+    repo = repo_path(directory)
     if os.path.isdir(repo):
         raise RepositoryAlreadyExistsError(directory, repo)
 
-    # Create repository with default template
+    # Initialize repository with default template
     copy_files(default_template_path, repo)
 
-    # Initialize repository
     message = '"Default presentation content."'
     subprocess.call(['git', 'init', '-q', repo])
     subprocess.call(['git', 'add', '.'], cwd=repo)
