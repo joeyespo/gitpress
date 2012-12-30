@@ -22,10 +22,11 @@ Notes:
 import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
+from .config import ConfigSchemaError
 from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
-from .themes import list_themes
+from .themes import list_themes, use, ThemeNotFoundError
 from . import __version__
 
 
@@ -68,12 +69,25 @@ def execute(args):
         return build(args['<path>'], args['--out'])
 
     if args['themes']:
-        # TODO: implement
+        theme = args['<theme>']
         if args['use']:
-            pass
+            try:
+                switched = use(theme)
+            except ConfigSchemaError as ex:
+                print 'Error: Could not set config value:', ex
+                return 1
+            except ThemeNotFoundError as ex:
+                print 'Error: Theme %s is not currently installed.' % repr(theme)
+                return 1
+            if switched:
+                print 'Switched to theme %s.' % repr(theme)
+            else:
+                print 'Already using %s.' % repr(theme)
         elif args['install']:
+            # TODO: implement
             pass
         elif args['uninstall']:
+            # TODO: implement
             pass
         else:
             themes = list_themes()
@@ -82,6 +96,7 @@ def execute(args):
                 print '  ' + '\n  '.join(themes)
             else:
                 print 'No themes installed.'
+        return 0
 
     return 1
 
