@@ -85,10 +85,10 @@ def execute(args):
                 print 'Already using %s.' % repr(theme)
         elif args['install']:
             # TODO: implement
-            pass
+            raise NotImplementedError()
         elif args['uninstall']:
             # TODO: implement
-            pass
+            raise NotImplementedError()
         else:
             themes = list_themes()
             if themes:
