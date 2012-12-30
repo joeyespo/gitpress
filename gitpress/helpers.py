@@ -2,7 +2,7 @@ import errno
 import shutil
 
 
-def copy_files(source, dest):
+def copy_dir(source, dest):
     """Copies a file or directory to the specified location."""
     try:
         shutil.copytree(source, dest)
