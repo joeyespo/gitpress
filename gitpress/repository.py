@@ -53,3 +53,16 @@ def init(directory=None):
     subprocess.call(['git', 'commit', '-q', '-m', message], cwd=repo)
 
     return repo
+
+
+def presentation_files(directory=None):
+    """Gets a list of the repository presentation files relative to 'directory'."""
+    return list(iterate_presentation_files(directory))
+
+
+def iterate_presentation_files(directory=None):
+    """Iterates the repository presentation files relative to 'directory'."""
+    repo = require_repo(directory)
+    for root, dirs, files in os.walk(repo):
+        for f in files:
+            yield os.path.join(root, f)
