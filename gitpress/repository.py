@@ -82,6 +82,7 @@ def iterate_presentation_files(directory=None, excludes=None, includes=None):
     excludes_re = re.compile(excludes_pattern)
 
     def included(root, name):
+        """Returns True if the specified file is a presentation file."""
         path = os.path.join(root, name)
         # Explicitly included files takes priority
         if includes_re.match(path):
