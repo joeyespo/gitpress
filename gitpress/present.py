@@ -24,7 +24,7 @@ class RepositoryNotFoundError(Exception):
 
 def require_repo(directory=None):
     """Checks for a presentation repository and raises an exception if not found."""
-    if not os.path.isdir(directory):
+    if directory and not os.path.isdir(directory):
         raise ValueError('Directory not found: ' + repr(directory))
     repo = repo_path(directory)
     if not os.path.isdir(repo):
