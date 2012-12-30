@@ -59,16 +59,37 @@ def init(directory=None):
     return repo
 
 
-def presentation_files(directory=None):
-    """Gets a list of the repository presentation files relative to 'directory', not including themes."""
-    return list(iterate_presentation_files(directory))
+def presentation_files(directory=None, excludes=None, includes=None):
+    """Gets a list of the repository presentation files relative to 'directory',
+    not including themes. Note that 'includes' take priority."""
+    return list(iterate_presentation_files(directory, excludes, includes))
 
 
-def iterate_presentation_files(directory=None):
-    """Iterates the repository presentation files relative to 'directory', not including themes."""
+def iterate_presentation_files(directory=None, excludes=None, includes=None):
+    """Iterates the repository presentation files relative to 'directory',
+    not including themes. Note that 'includes' take priority."""
     repo = require_repo(directory)
+    if includes is None:
+        includes = []
+    if excludes is None:
+        excludes = []
+
+    # Transform glob patterns to regular expressions
+    includes_pattern = r'|'.join([fnmatch.translate(x) for x in includes]) or r'$.'
+    excludes_pattern = r'|'.join([fnmatch.translate(x) for x in excludes]) or r'$.'
+    includes_re = re.compile(includes_pattern)
+    excludes_re = re.compile(excludes_pattern)
+
+    def included(path):
+        # Explicitly included files takes priority
+        if includes_re.match(path):
+            return True
+        # Ignore special and excluded files
+        return not specials_re.match(path) and not excludes_re.match(path)
+
+    # Get a filtered list of paths to be built
     for root, dirs, files in os.walk(repo):
-        dirs[:] = [d for d in dirs if not specials_re.match(d)]
-        files = [f for f in files if not specials_re.match(f)]
+        dirs[:] = [d for d in dirs if included(d)]
+        files = [f for f in files if included(f)]
         for f in files:
             yield os.path.join(root, f)
