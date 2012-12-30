@@ -22,7 +22,7 @@ Notes:
 import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
-from .present import init, RepositoryAlreadyExistsError
+from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
 from .themes import list_themes
@@ -40,7 +40,10 @@ def main(argv=None):
     args = docopt(usage, argv=argv, version=version)
 
     # Execute command
-    execute(args)
+    try:
+        execute(args)
+    except RepositoryNotFoundError as ex:
+        print 'Error: No Gitpress repository found at', ex.directory
 
 
 def execute(args):
