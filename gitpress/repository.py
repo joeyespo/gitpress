@@ -1,4 +1,6 @@
 import os
+import re
+import fnmatch
 import subprocess
 from .helpers import copy_files
 
@@ -6,6 +8,8 @@ from .helpers import copy_files
 repo_dir = '.gitpress'
 templates_path = os.path.join(os.path.dirname(__file__), 'templates')
 default_template_path = os.path.join(templates_path, 'default')
+specials = ['.*', '_*']
+specials_re = re.compile('|'.join([fnmatch.translate(x) for x in specials]))
 
 
 class RepositoryAlreadyExistsError(Exception):
@@ -56,13 +60,15 @@ def init(directory=None):
 
 
 def presentation_files(directory=None):
-    """Gets a list of the repository presentation files relative to 'directory'."""
+    """Gets a list of the repository presentation files relative to 'directory', not including themes."""
     return list(iterate_presentation_files(directory))
 
 
 def iterate_presentation_files(directory=None):
-    """Iterates the repository presentation files relative to 'directory'."""
+    """Iterates the repository presentation files relative to 'directory', not including themes."""
     repo = require_repo(directory)
     for root, dirs, files in os.walk(repo):
+        dirs[:] = [d for d in dirs if not specials_re.match(d)]
+        files = [f for f in files if not specials_re.match(f)]
         for f in files:
             yield os.path.join(root, f)
