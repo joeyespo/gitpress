@@ -5,13 +5,13 @@ except ImportError:
     import json
 
 
-content_config_file = 'gitpress.json'
+config_file = '_config.json'
 theme_config_file = 'gitpress_theme.json'
 
 
 def content_config(path):
     """Returns the configuration for the specified working directory."""
-    return from_file(os.path.join(path, content_config_file))
+    return from_file(os.path.join(path, config_file))
 
 
 def theme_config(path):
