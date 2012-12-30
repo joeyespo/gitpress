@@ -80,16 +80,18 @@ def iterate_presentation_files(directory=None, excludes=None, includes=None):
     includes_re = re.compile(includes_pattern)
     excludes_re = re.compile(excludes_pattern)
 
-    def included(path):
+    def included(root, name):
+        path = os.path.join(root, name)
         # Explicitly included files takes priority
         if includes_re.match(path):
             return True
         # Ignore special and excluded files
-        return not specials_re.match(path) and not excludes_re.match(path)
+        return (not specials_re.match(name)
+            and not excludes_re.match(path))
 
     # Get a filtered list of paths to be built
     for root, dirs, files in os.walk(repo):
-        dirs[:] = [d for d in dirs if included(d)]
-        files = [f for f in files if included(f)]
+        dirs[:] = [d for d in dirs if included(root, d)]
+        files = [f for f in files if included(root, f)]
         for f in files:
             yield os.path.join(root, f)
