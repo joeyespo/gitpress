@@ -40,6 +40,11 @@ def main(argv=None):
     args = docopt(usage, argv=argv, version=version)
 
     # Execute command
+    execute(args)
+
+
+def execute(args):
+    """Executes the command indicated by the specified parsed arguments."""
     if args['init']:
         try:
             repo = init(args['<directory>'])
@@ -48,15 +53,18 @@ def main(argv=None):
             if not args['-q']:
                 print 'Gitpress repository already exists in', ex.repo
         return 0
-    elif args['preview']:
+
+    if args['preview']:
         path, address = resolve(args['<path>'], args['<address>'])
         host, port = split_address(address)
         if address and not host and not port:
             print 'Error: Invalid address', repr(address)
         return preview(working_directory=path, host=host, port=port)
-    elif args['build']:
+
+    if args['build']:
         return build(args['<path>'], args['--out'])
-    elif args['themes']:
+
+    if args['themes']:
         # TODO: implement
         if args['use']:
             pass
