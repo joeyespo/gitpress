@@ -9,6 +9,7 @@ Usage:
   gitpress preview [--out <dir>] [<path>] [<address>]
   gitpress build [--out <dir>] [<path>]
   gitpress init [-q] [<directory>]
+  gitpress themes [(use | install | uninstall) <theme>]
 
 Options:
   -h --help         Show this help.
@@ -55,6 +56,16 @@ def main(argv=None):
         return preview(working_directory=path, host=host, port=port)
     elif args['build']:
         return build(path, args['--out'])
+    elif args['themes']:
+        # TODO: implement
+        if args['use']:
+            pass
+        elif args['install']:
+            pass
+        elif args['uninstall']:
+            pass
+        else:
+            pass
 
     return 1
 
