@@ -21,7 +21,7 @@ def list_themes():
     return os.listdir(path) if os.path.isdir(path) else None
 
 
-def use(theme):
+def use_theme(theme):
     """Switches to the specified theme. This returns False if switching to the already active theme."""
     if theme not in list_themes():
         raise ThemeNotFoundError(theme)

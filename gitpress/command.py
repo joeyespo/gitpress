@@ -26,7 +26,7 @@ from .config import ConfigSchemaError
 from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
-from .themes import list_themes, use, ThemeNotFoundError
+from .themes import list_themes, use_theme, ThemeNotFoundError
 from . import __version__
 
 
@@ -72,7 +72,7 @@ def execute(args):
         theme = args['<theme>']
         if args['use']:
             try:
-                switched = use(theme)
+                switched = use_theme(theme)
             except ConfigSchemaError as ex:
                 print 'Error: Could not set config value:', ex
                 return 1
