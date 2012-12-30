@@ -74,15 +74,13 @@ def execute(args):
             try:
                 switched = use_theme(theme)
             except ConfigSchemaError as ex:
-                print 'Error: Could not set config value:', ex
+                print 'Error: Could not modify config:', ex
                 return 1
             except ThemeNotFoundError as ex:
                 print 'Error: Theme %s is not currently installed.' % repr(theme)
                 return 1
-            if switched:
-                print 'Switched to theme %s.' % repr(theme)
-            else:
-                print 'Already using %s.' % repr(theme)
+            message = 'Switched to theme %s.' if switched else 'Already using %s.'
+            print message % repr(theme)
         elif args['install']:
             # TODO: implement
             raise NotImplementedError()
