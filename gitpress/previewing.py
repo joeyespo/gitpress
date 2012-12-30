@@ -2,24 +2,24 @@ import os
 from werkzeug.serving import run_simple
 
 
-def preview(working_directory=None, host=None, port=None, use_debugger=None):
+def preview(directory=None, host=None, port=None, use_debugger=None):
     """Runs a local server to preview the working directory of a repository."""
 
     # Defaults
-    working_directory = os.path.abspath(working_directory or '.')
+    directory = os.path.abspath(directory or '.')
     if not host:
         host = '127.0.0.1'
     if not port:
         port = 5000
 
     # Validation
-    if not os.path.isdir(working_directory):
-        raise ValueError('Directory not found: ' + repr(working_directory))
+    if not os.path.isdir(directory):
+        raise ValueError('Directory not found: ' + repr(directory))
 
     # Configuration
     os.environ['GITPRESS_BLOG_PREVIEW'] = 'True'
-    os.environ['GITPRESS_BLOG_DIRECTORY'] = working_directory
-    os.environ['GITPRESS_BLOG_TITLE'] = os.path.basename(working_directory).title()
+    os.environ['GITPRESS_BLOG_DIRECTORY'] = directory
+    os.environ['GITPRESS_BLOG_TITLE'] = os.path.basename(directory).title()
 
     # TODO: themes
     # Get preview server

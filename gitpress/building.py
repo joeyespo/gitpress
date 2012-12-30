@@ -9,27 +9,27 @@ from .helpers import copy_files
 default_theme_path = os.path.join(os.path.dirname(__file__), 'themes', 'default')
 
 
-def build(working_directory=None, out_directory=None):
+def build(directory=None, out_directory=None):
     """Builds the website, given the content and site configuration."""
 
     # Defaults
-    if not working_directory:
-        working_directory = '.'
+    if not directory:
+        directory = '.'
     if not out_directory:
         out_directory = '_site'
 
     # Normalize
-    working_directory = os.path.abspath(working_directory)
-    out_directory = os.path.relpath(out_directory, working_directory)
+    directory = os.path.abspath(directory)
+    out_directory = os.path.relpath(out_directory, directory)
 
     # Validate
-    if not os.path.isdir(working_directory):
-        raise ValueError('Directory not found: ' + repr(working_directory))
+    if not os.path.isdir(directory):
+        raise ValueError('Directory not found: ' + repr(directory))
     if out_directory == '.':
         raise ValueError('Output directory must be different than the working directory: ' + repr(out_directory))
 
     # Configure
-    config = content_config(working_directory)
+    config = content_config(directory)
     theme_source = config.get('theme')
     theme_branch = config.get('theme_branch')
     if theme_branch and not theme_source:
