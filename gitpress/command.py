@@ -10,7 +10,7 @@ Usage:
   gitpress build [--out <dir>] [<path>]
   gitpress init [-q] [<directory>]
   gitpress themes [use <theme> | install <theme> | uninstall <theme>]
-  gitpress plugins
+  gitpress plugins [add <plugin> | remove <plugin>]
 
 Options:
   -h --help         Show this help.
@@ -28,7 +28,7 @@ from .present import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
 from .themes import list_themes, use_theme, ThemeNotFoundError
-from .plugins import list_plugins
+from .plugins import list_plugins, add_plugin, remove_plugin
 from . import __version__
 
 
@@ -101,11 +101,23 @@ def execute(args):
     if args['plugins']:
         plugin = args['<plugin>']
         if args['add']:
-            # TODO: implement
-            raise NotImplementedError()
+            try:
+                added = add_plugin(plugin)
+            except ConfigSchemaError as ex:
+                print 'Error: Could not modify config:', ex
+                return 1
+            message = ('Added plugin %s' if added else
+                'Plugin %s has already been added.')
+            print message % repr(plugin)
         elif args['remove']:
-            # TODO: implement
-            raise NotImplementedError()
+            try:
+                added = remove_plugin(plugin)
+            except ConfigSchemaError as ex:
+                print 'Error: Could not modify config:', ex
+                return 1
+            message = ('Removed plugin %s' if added else
+                'Plugin %s has already been removed.')
+            print message % repr(plugin)
         else:
             plugins = list_plugins()
             if plugins:
