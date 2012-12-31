@@ -1,14 +1,13 @@
 import os
+import errno
 from collections import OrderedDict
 try:
     import simplejson as json
 except ImportError:
     import json
-from .repository import require_repo
 
 
 config_file = '_config.json'
-theme_config_file = 'gitpress_theme.json'
 
 
 class ConfigSchemaError(Exception):
@@ -34,12 +33,43 @@ def from_file(config_file):
         return json.load(f)
 
 
+def read_config(repo_directory):
+    """Returns the configuration from the presentation repository."""
+    return read_config_file(os.path.join(repo_directory, config_file))
+
+
+def read_config_file(path):
+    """Returns the configuration from the specified file."""
+    try:
+        with open(path, 'r') as f:
+            return json.load(f, object_pairs_hook=OrderedDict)
+    except IOError as ex:
+        if ex != errno.ENOENT:
+            raise
+    return {}
+
+
+def write_config(repo_directory, config):
+    """Writes the specified configuration to the presentation repository."""
+    return write_config_file(os.path.join(repo_directory, config_file), config)
+
+
+def write_config_file(path, config):
+    """Writes the specified configuration to the specified file."""
+    contents = json.dumps(config, indent=4, separators=(',', ': ')) + '\n'
+    try:
+        with open(path, 'w') as f:
+            f.write(contents)
+        return True
+    except IOError as ex:
+        if ex != errno.ENOENT:
+            raise
+    return False
+
+
 def get_value(repo_directory, key, expect_type=None):
     """Gets the value of the specified key in the config file."""
-    path = os.path.join(repo_directory, config_file)
-
-    with open(path, 'r') as f:
-        config = json.load(f, object_pairs_hook=OrderedDict)
+    config = read_config(repo_directory)
     value = config.get(key)
     if expect_type and value is not None and not isinstance(value, expect_type):
         raise ConfigSchemaError('Expected config variable %s to be type %s, got %s'
@@ -51,14 +81,12 @@ def set_value(repo_directory, key, value, strict=True):
     """Sets the value of a particular key in the config file. This has no effect when setting to the same value."""
     if value is None:
         raise ValueError('Argument "value" must not be None.')
-    path = os.path.join(repo_directory, config_file)
 
-    # Read values and short circuit if no value is effectively being set
-    with open(path, 'r') as f:
-        config = json.load(f, object_pairs_hook=OrderedDict)
+    # Read values and do nothing if not making any changes
+    config = read_config(repo_directory)
     old = config.get(key)
     if old == value:
-        return value
+        return old
 
     # Check schema
     if strict and old is not None and not isinstance(old, type(value)):
@@ -67,7 +95,5 @@ def set_value(repo_directory, key, value, strict=True):
 
     # Set new value and save results
     config[key] = value
-    contents = json.dumps(config, indent=4, separators=(',', ': ')) + '\n'
-    with open(path, 'w') as f:
-        f.write(contents)
+    write_config(repo_directory, config)
     return old
