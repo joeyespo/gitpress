@@ -14,16 +14,17 @@ class ThemeNotFoundError(Exception):
         self.theme = theme
 
 
-def list_themes():
+def list_themes(directory=None):
     """Gets a list of the installed themes."""
-    repo = require_repo()
+    repo = require_repo(directory)
     path = os.path.join(repo, themes_dir)
     return os.listdir(path) if os.path.isdir(path) else None
 
 
-def use_theme(theme):
+def use_theme(theme, directory=None):
     """Switches to the specified theme. This returns False if switching to the already active theme."""
-    if theme not in list_themes():
+    repo = require_repo(directory)
+    if theme not in list_themes(directory):
         raise ThemeNotFoundError(theme)
-    old_theme = set_value('theme', theme)
+    old_theme = set_value(repo, 'theme', theme)
     return theme != old_theme

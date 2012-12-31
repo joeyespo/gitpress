@@ -1,37 +1,42 @@
 from .config import get_value, set_value
+from .repository import require_repo
 
 
-def list_plugins():
+def list_plugins(directory=None):
     """Gets a list of the installed themes."""
-    plugins = get_value('plugins')
-    if not plugins or not isinstance(plugins, dict):
+    repo = require_repo(directory)
+    plugins = get_value(repo, 'plugins')
+    if not plugins or not isinstance(plugins):
         return None
     return plugins.keys()
 
 
-def add_plugin(plugin):
+def add_plugin(plugin, directory=None):
     """Adds the specified plugin. This returns False if it was already added."""
-    plugins = get_value('plugins', expect_type=dict)
+    repo = require_repo(directory)
+    plugins = get_value(repo, 'plugins', expect_type=dict)
     if plugin in plugins:
         return False
 
     plugins[plugin] = {}
-    set_value('plugins', plugins)
+    set_value(repo, 'plugins', plugins)
     return True
 
 
-def remove_plugin(plugin):
+def remove_plugin(plugin, directory=None):
     """Removes the specified plugin."""
-    plugins = get_value('plugins', expect_type=dict)
+    repo = require_repo(directory)
+    plugins = get_value(repo, 'plugins', expect_type=dict)
     if plugin not in plugins:
         return False
 
     del plugins[plugin]
-    set_value('plugins', plugins)
+    set_value(repo, 'plugins', plugins)
     return True
 
 
-def get_plugin_settings(plugin):
+def get_plugin_settings(plugin, directory=None):
     """Gets the settings for the specified plugin."""
-    plugins = get_value('plugins')
+    repo = require_repo(directory)
+    plugins = get_value(repo, 'plugins')
     return plugins.get(plugin) if isinstance(plugins, dict) else None
