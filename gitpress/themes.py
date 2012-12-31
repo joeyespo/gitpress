@@ -26,5 +26,6 @@ def use_theme(theme, directory=None):
     repo = require_repo(directory)
     if theme not in list_themes(directory):
         raise ThemeNotFoundError(theme)
+
     old_theme = set_value(repo, 'theme', theme)
-    return theme != old_theme
+    return old_theme != theme
