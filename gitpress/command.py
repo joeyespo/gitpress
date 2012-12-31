@@ -49,33 +49,36 @@ def main(argv=None):
     try:
         execute(args)
     except RepositoryNotFoundError as ex:
-        print 'Error: No Gitpress repository found at', ex.directory
+        error('No Gitpress repository found at', ex.directory)
 
 
 def execute(args):
     """Executes the command indicated by the specified parsed arguments."""
+
+    def info(*message):
+        """Displays a message unless -q was specified."""
+        if not args['-q']:
+            print ' '.join(map(str, message))
+
     if args['init']:
         try:
             repo = init(args['<directory>'])
-            print 'Initialized Gitpress repository in', repo
+            info('Initialized Gitpress repository in', repo)
         except RepositoryAlreadyExistsError as ex:
-            if not args['-q']:
-                print 'Gitpress repository already exists in', ex.repo
+            info('Gitpress repository already exists in', ex.repo)
         return 0
 
     if args['preview']:
         directory, address = resolve(args['<directory>'], args['<address>'])
         host, port = split_address(address)
         if address and not host and not port:
-            print 'Error: Invalid address', repr(address)
+            error('Invalid address', repr(address))
         return preview(directory, host=host, port=port)
 
     if args['build']:
-        if not args['-q']:
-            print 'Building site', os.path.abspath(args['<directory>'] or '.')
+        info('Building site', os.path.abspath(args['<directory>'] or '.'))
         out_directory = build(args['<directory>'], args['--out'])
-        if not args['-q']:
-            print 'Site built in', os.path.abspath(out_directory)
+        info('Site built in', os.path.abspath(out_directory))
         return 0
 
     if args['themes']:
@@ -84,13 +87,12 @@ def execute(args):
             try:
                 switched = use_theme(theme)
             except ConfigSchemaError as ex:
-                print 'Error: Could not modify config:', ex
+                error('Could not modify config:', ex)
                 return 1
             except ThemeNotFoundError as ex:
-                print 'Error: Theme %s is not currently installed.' % repr(theme)
+                error('Theme %s is not currently installed.' % repr(theme))
                 return 1
-            message = 'Switched to theme %s' if switched else 'Already using %s'
-            print message % repr(theme)
+            info('Switched to theme %s' if switched else 'Already using %s' % repr(theme))
         elif args['install']:
             # TODO: implement
             raise NotImplementedError()
@@ -100,10 +102,10 @@ def execute(args):
         else:
             themes = list_themes()
             if themes:
-                print 'Installed themes:'
-                print '  ' + '\n  '.join(themes)
+                info('Installed themes:')
+                info('  ' + '\n  '.join(themes))
             else:
-                print 'No themes installed.'
+                info('No themes installed.')
         return 0
 
     if args['plugins']:
@@ -112,11 +114,10 @@ def execute(args):
             try:
                 added = add_plugin(plugin)
             except ConfigSchemaError as ex:
-                print 'Error: Could not modify config:', ex
+                error('Could not modify config:', ex)
                 return 1
-            message = ('Added plugin %s' if added else
-                'Plugin %s has already been added.')
-            print message % repr(plugin)
+            info(('Added plugin %s' if added else
+                'Plugin %s has already been added.') % repr(plugin))
         elif args['remove']:
             settings = get_plugin_settings(plugin)
             if not args['-f'] and settings and isinstance(settings, dict):
@@ -126,21 +127,20 @@ def execute(args):
             try:
                 removed = remove_plugin(plugin)
             except ConfigSchemaError as ex:
-                print 'Error: Could not modify config:', ex
-                return 1
-            message = ('Removed plugin %s' if removed else
-                'Plugin %s has already been removed.')
-            print message % repr(plugin)
+                error('Error: Could not modify config:', ex)
+            info(('Removed plugin %s' if removed else
+                'Plugin %s has already been removed.') % repr(plugin))
         else:
             plugins = list_plugins()
-            if plugins:
-                print 'Installed plugins:'
-                print '  ' + '\n  '.join(plugins)
-            else:
-                print 'No plugins installed.'
+            info('Installed plugins:\n  ' + '\n  '.join(plugins) if plugins else
+                'No plugins installed.')
         return 0
 
     return 1
+
+
+def error(*message):
+    sys.exit('Error: ' + ' '.join(map(str, message)))
 
 
 def gpp(argv=None):
