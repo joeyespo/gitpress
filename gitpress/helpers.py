@@ -2,6 +2,22 @@ import os
 import shutil
 
 
+def remove_directory(directory, show_warnings=True):
+    """Deletes a directory and its contents.
+    Returns a list of errors in form (function, path, excinfo)."""
+    errors = []
+
+    def onerror(function, path, excinfo):
+        if show_warnings:
+            print 'Cannot delete %s: %s' % (os.path.relpath(directory), excinfo[1])
+        errors.append((function, path, excinfo))
+
+    if os.path.exists(directory):
+        shutil.rmtree(directory, onerror=onerror)
+
+    return errors
+
+
 def copy_files(source_files, target_directory, source_directory=None):
     """Copies a list of files to the specified directory.
     If source_directory is provided, it will be prepended to each source file."""
