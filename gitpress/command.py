@@ -21,6 +21,7 @@ Notes:
   <address> can take the form <host>[:<port>] or just <port>.
 """
 
+import os
 import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
@@ -70,7 +71,10 @@ def execute(args):
         return preview(directory, host=host, port=port)
 
     if args['build']:
-        return build(args['<directory>'], args['--out'])
+        print 'Building site', os.path.abspath(args['<directory>'] or '.')
+        out_directory = build(args['<directory>'], args['--out'])
+        print 'Site built in', os.path.abspath(out_directory)
+        return 0
 
     if args['themes']:
         theme = args['<theme>']
