@@ -7,7 +7,7 @@ Implements the command-line interface of Gitpress.
 
 Usage:
   gitpress preview [--out <dir>] [<directory>] [<address>]
-  gitpress build [--out <dir>] [<directory>]
+  gitpress build [-q] [--out <dir>] [<directory>]
   gitpress init [-q] [<directory>]
   gitpress themes [use <theme> | install <theme> | uninstall <theme>]
   gitpress plugins [add <plugin> | remove [-f] <plugin>]
@@ -71,9 +71,11 @@ def execute(args):
         return preview(directory, host=host, port=port)
 
     if args['build']:
-        print 'Building site', os.path.abspath(args['<directory>'] or '.')
+        if not args['-q']:
+            print 'Building site', os.path.abspath(args['<directory>'] or '.')
         out_directory = build(args['<directory>'], args['--out'])
-        print 'Site built in', os.path.abspath(out_directory)
+        if not args['-q']:
+            print 'Site built in', os.path.abspath(out_directory)
         return 0
 
     if args['themes']:
