@@ -49,7 +49,7 @@ def main(argv=None):
 
     # Execute command
     try:
-        execute(args)
+        return execute(args)
     except RepositoryNotFoundError as ex:
         error('No Gitpress repository found at', ex.directory)
 
