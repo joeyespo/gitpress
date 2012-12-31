@@ -28,7 +28,7 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .config import ConfigSchemaError
-from .repository import init, RepositoryAlreadyExistsError, RepositoryNotFoundError
+from .repository import init, require_repo, RepositoryAlreadyExistsError, RepositoryNotFoundError
 from .previewing import preview
 from .building import build
 from .themes import list_themes, use_theme, ThemeNotFoundError
@@ -78,6 +78,7 @@ def execute(args):
         return preview(directory, host=host, port=port)
 
     if args['build']:
+        require_repo(args['<directory>'])
         info('Building site', os.path.abspath(args['<directory>'] or '.'))
         out_directory = build(args['<directory>'], args['--out'])
         info('Site built in', os.path.abspath(out_directory))
