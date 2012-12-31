@@ -16,6 +16,8 @@ Options:
   -h --help         Show this help.
   --version         Show version.
   -o --out <dir>    The directory to output the rendered site.
+  -f                Force the command to continue without prompting.
+  -q                Quiet mode, suppress all messages except errors.
 
 Notes:
   <address> can take the form <host>[:<port>] or just <port>.
