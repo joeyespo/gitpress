@@ -6,7 +6,7 @@ def list_plugins(directory=None):
     """Gets a list of the installed themes."""
     repo = require_repo(directory)
     plugins = get_value(repo, 'plugins')
-    if not plugins or not isinstance(plugins):
+    if not plugins or not isinstance(plugins, dict):
         return None
     return plugins.keys()
 
