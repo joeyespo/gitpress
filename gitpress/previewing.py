@@ -1,29 +1,23 @@
 import os
-from werkzeug.serving import run_simple
+import SocketServer
+import SimpleHTTPServer
+from .building import build
 
 
-def preview(directory=None, host=None, port=None, use_debugger=None):
+def preview(directory=None, host=None, port=None, watch=True):
     """Runs a local server to preview the working directory of a repository."""
+    directory = directory or '.'
+    host = host or '127.0.0.1'
+    port = port or 5000
 
-    # Defaults
-    directory = os.path.abspath(directory or '.')
-    if not host:
-        host = '127.0.0.1'
-    if not port:
-        port = 5000
+    # TODO: admin interface
 
-    # Validation
-    if not os.path.isdir(directory):
-        raise ValueError('Directory not found: ' + repr(directory))
+    # TODO: use cache_only to keep from modifying output directly
+    out_directory = build(directory)
 
-    # Configuration
-    os.environ['GITPRESS_BLOG_PREVIEW'] = 'True'
-    os.environ['GITPRESS_BLOG_DIRECTORY'] = directory
-    os.environ['GITPRESS_BLOG_TITLE'] = os.path.basename(directory).title()
-
-    # TODO: themes
-    # Get preview server
-    from themes.default import application
-
-    # Run preview server
-    run_simple(host, port, application, use_debugger=True, use_reloader=True)
+    # Serve generated site
+    os.chdir(out_directory)
+    Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+    httpd = SocketServer.TCPServer((host, port), Handler)
+    print ' * Serving on http://%s:%s/' % (host, port)
+    httpd.serve_forever()
