@@ -34,9 +34,9 @@ def from_file(config_file):
         return json.load(f)
 
 
-def get_value(key, expect_type=None):
+def get_value(key, content_directory=None, expect_type=None):
     """Gets the value of the specified key in the config file."""
-    repo = require_repo()
+    repo = require_repo(content_directory)
     path = os.path.join(repo, config_file)
 
     with open(path, 'r') as f:
@@ -48,11 +48,11 @@ def get_value(key, expect_type=None):
     return value
 
 
-def set_value(key, value, strict=True):
+def set_value(key, value, content_directory=None, strict=True):
     """Sets the value of a particular key in the config file. This has no effect when setting to the same value."""
     if value is None:
         raise ValueError('Argument "value" must not be None.')
-    repo = require_repo()
+    repo = require_repo(content_directory)
     path = os.path.join(repo, config_file)
 
     # Read values and short circuit if no value is effectively being set

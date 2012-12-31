@@ -11,7 +11,7 @@ def list_plugins():
 
 def add_plugin(plugin):
     """Adds the specified plugin. This returns False if it was already added."""
-    plugins = get_value('plugins', dict)
+    plugins = get_value('plugins', expect_type=dict)
     if plugin in plugins:
         return False
 
@@ -22,7 +22,7 @@ def add_plugin(plugin):
 
 def remove_plugin(plugin):
     """Removes the specified plugin."""
-    plugins = get_value('plugins', dict)
+    plugins = get_value('plugins', expect_type=dict)
     if plugin not in plugins:
         return False
 
