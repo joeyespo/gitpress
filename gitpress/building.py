@@ -19,7 +19,9 @@ def build(directory=None, out_directory=None):
         raise ValueError('Output directory must not contain the source directory: ' + repr(out_directory))
 
     # TODO: read config
-    # TODO: process themes
+    # TODO: use virtualenv
+    # TODO: init and run plugins
+    # TODO: process with active theme
 
     # Collect and copy static files
     files = presentation_files(repo)
