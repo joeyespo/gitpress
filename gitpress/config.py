@@ -15,24 +15,6 @@ class ConfigSchemaError(Exception):
     pass
 
 
-def content_config(path):
-    """Returns the configuration for the specified working directory."""
-    return from_file(os.path.join(path, config_file))
-
-
-def theme_config(path):
-    """Returns the configuration for the specified theme directory."""
-    return from_file(os.path.join(path, theme_config_file))
-
-
-def from_file(config_file):
-    """Returns the configuration from the specified file."""
-    if not os.path.exists(config_file):
-        return {}
-    with file(config_file, 'r') as f:
-        return json.load(f)
-
-
 def read_config(repo_directory):
     """Returns the configuration from the presentation repository."""
     return read_config_file(os.path.join(repo_directory, config_file))
