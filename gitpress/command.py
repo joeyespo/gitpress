@@ -33,7 +33,7 @@ from .previewing import preview
 from .building import build
 from .themes import list_themes, use_theme, ThemeNotFoundError
 from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
-from .helpers import yes_or_no
+from .helpers import yes_or_no, NotADirectoryError
 from . import __version__
 
 
@@ -80,7 +80,10 @@ def execute(args):
     if args['build']:
         require_repo(args['<directory>'])
         info('Building site', os.path.abspath(args['<directory>'] or '.'))
-        out_directory = build(args['<directory>'], args['--out'])
+        try:
+            out_directory = build(args['<directory>'], args['--out'])
+        except NotADirectoryError as ex:
+            error(ex)
         info('Site built in', os.path.abspath(out_directory))
         return 0
 

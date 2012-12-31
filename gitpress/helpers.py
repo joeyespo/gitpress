@@ -2,6 +2,14 @@ import os
 import shutil
 
 
+class NotADirectoryError(Exception):
+    """Indicates a file was found when a directory was expected."""
+    def __init__(self, directory, message=None):
+        super(NotADirectoryError, self).__init__(
+            'Expected a directory, found a file instead at ' + directory)
+        self.directory = os.path.abspath(directory)
+
+
 def remove_directory(directory, show_warnings=True):
     """Deletes a directory and its contents.
     Returns a list of errors in form (function, path, excinfo)."""
@@ -13,6 +21,8 @@ def remove_directory(directory, show_warnings=True):
         errors.append((function, path, excinfo))
 
     if os.path.exists(directory):
+        if not os.path.isdir(directory):
+            raise NotADirectoryError(directory)
         shutil.rmtree(directory, onerror=onerror)
 
     return errors
