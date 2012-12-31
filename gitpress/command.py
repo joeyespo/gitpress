@@ -6,7 +6,7 @@ Implements the command-line interface of Gitpress.
 
 
 Usage:
-  gitpress preview [--out <dir>] [<directory>] [<address>]
+  gitpress preview [<directory>] [<address>]
   gitpress build [-q] [--out <dir>] [<directory>]
   gitpress init [-q] [<directory>]
   gitpress themes [use <theme> | install <theme> | uninstall <theme>]
