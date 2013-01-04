@@ -12,4 +12,4 @@ __version__ = '0.3'
 
 
 from . import command
-from .runner import run
+# TODO: API
