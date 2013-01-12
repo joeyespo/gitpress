@@ -11,7 +11,8 @@ class NotADirectoryError(Exception):
 
 
 def remove_directory(directory, show_warnings=True):
-    """Deletes a directory and its contents.
+    """\
+    Deletes a directory and its contents.
     Returns a list of errors in form (function, path, excinfo)."""
     errors = []
 
@@ -29,7 +30,8 @@ def remove_directory(directory, show_warnings=True):
 
 
 def copy_files(source_files, target_directory, source_directory=None):
-    """Copies a list of files to the specified directory.
+    """\
+    Copies a list of files to the specified directory.
     If source_directory is provided, it will be prepended to each source file."""
     try:
         os.makedirs(target_directory)
