@@ -5,14 +5,10 @@ try:
     import simplejson as json
 except ImportError:
     import json
+from .exceptions import ConfigSchemaError
 
 
 config_file = '_config.json'
-
-
-class ConfigSchemaError(Exception):
-    """Indicates the config does not conform to the expected types."""
-    pass
 
 
 def read_config(repo_directory):

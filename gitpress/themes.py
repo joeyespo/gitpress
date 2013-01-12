@@ -1,17 +1,11 @@
 import os
+from .exceptions import ThemeNotFoundError
 from .repository import require_repo
 from .config import set_value
 
 
 themes_dir = '_themes'
 default_theme = 'default'
-
-
-class ThemeNotFoundError(Exception):
-    """Indicates the requested theme was not found."""
-    def __init__(self, theme):
-        super(ThemeNotFoundError, self).__init__()
-        self.theme = theme
 
 
 def list_themes(directory=None):

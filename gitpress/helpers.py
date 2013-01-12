@@ -1,13 +1,6 @@
 import os
 import shutil
-
-
-class NotADirectoryError(Exception):
-    """Indicates a file was found when a directory was expected."""
-    def __init__(self, directory, message=None):
-        super(NotADirectoryError, self).__init__(
-            'Expected a directory, found a file instead at ' + directory)
-        self.directory = os.path.abspath(directory)
+from .exceptions import NotADirectoryError
 
 
 def remove_directory(directory, show_warnings=True):

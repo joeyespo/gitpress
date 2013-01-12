@@ -27,13 +27,13 @@ import os
 import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
-from .config import ConfigSchemaError
-from .repository import init, require_repo, RepositoryAlreadyExistsError, RepositoryNotFoundError
+from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
+from .repository import init, require_repo
 from .previewing import preview
 from .building import build
-from .themes import list_themes, use_theme, ThemeNotFoundError
+from .themes import list_themes, use_theme
 from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
-from .helpers import yes_or_no, NotADirectoryError
+from .helpers import yes_or_no
 from . import __version__
 
 

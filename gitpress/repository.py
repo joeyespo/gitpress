@@ -3,6 +3,7 @@ import re
 import shutil
 import fnmatch
 import subprocess
+from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError
 
 
 repo_dir = '.gitpress'
@@ -10,21 +11,6 @@ templates_path = os.path.join(os.path.dirname(__file__), 'templates')
 default_template_path = os.path.join(templates_path, 'default')
 specials = ['.*', '_*']
 specials_re = re.compile('|'.join([fnmatch.translate(x) for x in specials]))
-
-
-class RepositoryAlreadyExistsError(Exception):
-    """Indicates 'repo_dir' already exists while attempting to create a new one."""
-    def __init__(self, directory=None, repo=None):
-        super(RepositoryAlreadyExistsError, self).__init__()
-        self.directory = os.path.abspath(directory if directory else os.getcwd())
-        self.repo = os.path.abspath(repo or repo_path(self.directory))
-
-
-class RepositoryNotFoundError(Exception):
-    """Indicates an existing 'present_dir' is required, but was not found."""
-    def __init__(self, directory=None):
-        super(RepositoryNotFoundError, self).__init__()
-        self.directory = os.path.abspath(directory if directory else os.getcwd())
 
 
 def require_repo(directory=None):
