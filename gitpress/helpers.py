@@ -28,7 +28,8 @@ def copy_files(source_files, target_directory, source_directory=None):
     If source_directory is provided, it will be prepended to each source file."""
     try:
         os.makedirs(target_directory)
-    except:     # TODO: specific exception?
+    except:
+        # TODO: handle specific exception?
         pass
     for f in source_files:
         source = os.path.join(source_directory, f) if source_directory else f
