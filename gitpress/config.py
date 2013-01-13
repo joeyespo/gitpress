@@ -71,11 +71,13 @@ class Config(object):
         self.invalidate()
         self._read()
 
-    def get(self, key, default=None, expect=None):
+    def get(self, key, default=None, expect=None, silent=False):
         """Gets an individual value from the configuration."""
         values = self._read()
         value = values.get(key, default)
         if expect and key in values and not isinstance(value, expect):
+            if silent:
+                return default
             raise ConfigSchemaError('Expected config variable %s to be type %s, got %s'
                 % (repr(key), repr(expect), repr(type(value))))
         return value
