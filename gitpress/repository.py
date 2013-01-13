@@ -84,4 +84,4 @@ class Repository(object):
     def build(self, out_directory=None, virtualenv=True):
         """Initiates a new isolated build and returns the output directory."""
         # TODO: return self.presenter.build()
-        return build(self.directory, out_directory)
+        return build(self.content_directory, out_directory)
