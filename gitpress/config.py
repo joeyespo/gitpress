@@ -9,15 +9,14 @@ except ImportError:
 from .exceptions import ConfigSchemaError
 
 
-config_file = '_config.json'
-
-
 class Config(object):
     """Reads and writes configuration files."""
     def __init__(self, repo_directory, cached=True):
-        self.path = os.path.join(repo_directory, config_file)
+        self.path = os.path.join(repo_directory, Config.config_file)
         self.cached = cached
         self._cache = None
+
+    config_file = '_config.json'
 
     @staticmethod
     def read_dict(path):
