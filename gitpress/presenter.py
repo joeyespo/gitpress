@@ -16,7 +16,10 @@ from .exceptions import PresenterNotFoundError, BuildUnsupportedError, \
 
 
 class Presenter(Plugin):
-    """Interprets the directory to present the site."""
+    """\
+    Interprets a presentation or sub-presentation directory to help present the
+    site, directly, or by delegating the tasks of building and serving elsewhere.
+    """
     def __init__(self, repository, supports_themes=True, custom_server=False, custom_build=False):
         super(Presenter, self).__init__()
         self.repository = repository
