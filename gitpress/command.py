@@ -9,8 +9,8 @@ Usage:
   gitpress preview [<directory>] [<address>]
   gitpress build [-q] [--out <dir>] [<directory>]
   gitpress init [-q] [<directory>]
-  gitpress plugins [add <plugin> | remove [-f] <plugin>]
-  gitpress themes [use <theme> | install <theme> | uninstall <theme>]
+  gitpress plugins [add <plugin> | remove [-f] <plugin>]  [<directory>]
+  gitpress themes [use <theme> | install <theme> | uninstall <theme>] [<directory>]
 
 Options:
   -h --help         Show this help.
