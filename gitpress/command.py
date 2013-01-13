@@ -78,8 +78,9 @@ def execute(args):
         repo = Repository.from_content(directory)
         return repo.preview(host=host, port=port)
 
+    repo = Repository.from_content(args['<directory>'])
+
     if args['build']:
-        repo = Repository.from_content(args['<directory>'])
         info('Building site', os.path.abspath(args['<directory>'] or '.'))
         out_directory = repo.build(args['--out'])
         info('Site built in', os.path.abspath(out_directory))
@@ -87,7 +88,6 @@ def execute(args):
 
     if args['plugins']:
         plugin = args['<plugin>']
-        repo = Repository.from_content(args['<directory>'])
         if args['add']:
             added = repo.add_plugin(plugin)
             info(('Added plugin %s' if added
@@ -111,7 +111,6 @@ def execute(args):
 
     if args['themes']:
         theme = args['<theme>']
-        repo = Repository.from_content(args['<directory>'])
         if args['use']:
             try:
                 switched = repo.use_theme(theme)
