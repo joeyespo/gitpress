@@ -50,6 +50,8 @@ def main(argv=None):
     # Execute command
     try:
         return execute(args)
+    except NotADirectoryError as ex:
+        error(ex)
     except RepositoryNotFoundError as ex:
         error(ex)
 
@@ -80,10 +82,7 @@ def execute(args):
     if args['build']:
         require_repo(args['<directory>'])
         info('Building site', os.path.abspath(args['<directory>'] or '.'))
-        try:
-            out_directory = build(args['<directory>'], args['--out'])
-        except NotADirectoryError as ex:
-            error(ex)
+        out_directory = build(args['<directory>'], args['--out'])
         info('Site built in', os.path.abspath(out_directory))
         return 0
 
