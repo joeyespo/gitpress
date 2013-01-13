@@ -1,7 +1,7 @@
 import os
 from .exceptions import ThemeNotFoundError
 from .repository import require_repo
-from .config import set_value
+from .config import Config
 
 
 themes_dir = '_themes'
@@ -21,5 +21,5 @@ def use_theme(theme, directory=None):
     if theme not in list_themes(directory):
         raise ThemeNotFoundError(theme)
 
-    old_theme = set_value(repo, 'theme', theme)
+    old_theme = Config(repo).set('theme', theme)
     return old_theme != theme
