@@ -55,7 +55,7 @@ def main(argv=None):
     except RepositoryNotFoundError as ex:
         error(ex)
     except ConfigSchemaError as ex:
-        error('Could not modify config:', ex)
+        error(ex, header='Config schema error')
 
 
 def execute(args):
@@ -136,8 +136,12 @@ def execute(args):
     return 1
 
 
-def error(*message):
-    sys.exit('Error: ' + ' '.join(map(str, message)))
+def error(*message, **kwargs):
+    """\
+    Displays the specified error message and exits with error code 1.
+    If the 'header' keyword argument is provided, it is used instead of 'Error:'.
+    """
+    sys.exit(kwargs.get('header', 'Error') + ': ' + ' '.join(map(str, message)))
 
 
 def gpp(argv=None):
