@@ -1,6 +1,7 @@
-"""\
-Gitpress
---------
+# -*- coding: utf-8 -*-
+"""
+gitpress
+~~~~~~~~
 
 Blissful blogging for hackers.
 
