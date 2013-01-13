@@ -14,10 +14,8 @@ class Repository(object):
     def __init__(self, directory=None, content_directory=None, presenter=None):
         if directory is None:
             directory = '.'
-        if content_directory is None:
-            content_directory = os.path.join(directory, '..')
-        directory = os.path.abspath(directory)
-        content_directory = os.path.abspath(content_directory)
+        content_directory, directory = Repository.resolve(
+            content_directory, directory)
         config_file = os.path.join(directory, Config.config_file)
 
         if not os.path.isdir(directory):
@@ -46,12 +44,15 @@ class Repository(object):
 
     @staticmethod
     def resolve(content_directory=None, repo_directory=None):
-        """Resolves the repository directory from the specified locations."""
+        """Returns (content_directory, repo_directory) applying default values."""
+        if repo_directory is not None and content_directory is None:
+            return os.path.join(repo_directory, '..'), repo_directory
         if content_directory is None:
             content_directory = '.'
         if repo_directory is None:
             repo_directory = Repository.default_directory
-        return os.path.join(content_directory, repo_directory)
+        content_directory = os.path.abspath(content_directory)
+        return content_directory, os.path.join(content_directory, repo_directory)
 
     @staticmethod
     def init(self, content_directory=None, repo_directory=None, template=None):
@@ -62,7 +63,8 @@ class Repository(object):
         """
         if template is None:
             template = default_template
-        repo_directory = Repository.resolve(content_directory, repo_directory)
+        content_directory, repo_directory = Repository.resolve(
+            content_directory, repo_directory)
 
         if os.path.isdir(repo_directory):
             raise RepositoryAlreadyExistsError(content_directory, repo_directory)
