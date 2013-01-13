@@ -5,6 +5,7 @@ from .config import Config
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
     InvalidRepositoryError, ThemeNotFoundError
 from .building import build
+from .previewing import preview
 from .templates import default_template, resolve_template
 from .plugin import PluginRequirement
 
@@ -83,6 +84,10 @@ class Repository(object):
         """Clones an existing repository to specified location."""
         # TODO: implement
         raise NotImplementedError()
+
+    def preview(self, host=None, port=None):
+        # TODO: return self.presenter.preview()
+        return preview(self.content_directory, host, port)
 
     def build(self, out_directory=None, virtualenv=True):
         """Initiates a new isolated build and returns the output directory."""

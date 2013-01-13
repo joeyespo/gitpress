@@ -29,7 +29,6 @@ from docopt import docopt
 from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
 from .repository import Repository
-from .previewing import preview
 from .helpers import yes_or_no
 from . import __version__
 
@@ -76,7 +75,8 @@ def execute(args):
         host, port = split_address(address)
         if address and not host and not port:
             error('Invalid address', repr(address))
-        return preview(directory, host=host, port=port)
+        repo = Repository.from_content(directory)
+        return repo.preview(host=host, port=port)
 
     if args['build']:
         repo = Repository.from_content(args['<directory>'])
