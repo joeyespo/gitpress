@@ -28,7 +28,7 @@ class Presenter(Plugin):
         if not isinstance(presenter, basestring):
             raise TypeError('Presenter expected to be a string or a Presenter object, got %s.' % repr(type(presenter)))
         if presenter in builtin_presenters:
-            return builtin_presenters[presenter]
+            return builtin_presenters[presenter]()
         # TODO: resolve import names
         raise PresenterNotFoundError(presenter)
 
