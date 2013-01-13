@@ -11,7 +11,7 @@ def list_plugins(directory=None):
 def add_plugin(plugin, directory=None):
     """Adds the specified plugin. This returns False if it was already added."""
     repo = require_repo(directory)
-    plugins = Config(repo).get('plugins', expect=dict)
+    plugins = Config(repo).get('plugins', default={}, expect=dict)
     if plugin in plugins:
         return False
 
