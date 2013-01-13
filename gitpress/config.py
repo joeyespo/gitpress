@@ -34,14 +34,8 @@ class Config(object):
     def write_dict(config_file, values):
         """Writes the specified dictionary configuration to disk."""
         contents = json.dumps(values, indent=4, separators=(',', ': ')) + '\n'
-        try:
-            with open(config_file, 'w') as f:
-                f.write(contents)
-            return True
-        except IOError as ex:
-            if ex != errno.ENOENT:
-                raise
-        return False
+        with open(config_file, 'w') as f:
+            f.write(contents)
 
     def _read(self):
         """Reads or re-reads the configuration if out of date."""
