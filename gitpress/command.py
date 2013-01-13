@@ -28,7 +28,7 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
-from .repository import GitpressRepository
+from .gitpress import GitpressRepository
 from .helpers import yes_or_no
 from . import __version__
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-gitpress.repository
-~~~~~~~~~~~~~~~~~~~
+gitpress.gitpress
+~~~~~~~~~~~~~~~~~
 
-Module for representing a repository and its actions.
+Module for interacting with the Gitpress presentation repository.
 
 :copyright: (c) 2013 by Joe Esposito.
 :license: MIT, see LICENSE for more details.

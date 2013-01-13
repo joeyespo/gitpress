@@ -1,7 +1,7 @@
 import os
 import SocketServer
 import SimpleHTTPServer
-from .repository import Repository
+from .gitpress import GitpressRepository
 
 
 def preview(directory=None, host=None, port=None, watch=True):
@@ -14,7 +14,7 @@ def preview(directory=None, host=None, port=None, watch=True):
 
     # TODO: Use cache_only to keep from modifying output directly
     # TODO: Allow previewing of site without first building
-    repo = Repository.from_content(directory)
+    repo = GitpressRepository.from_content(directory)
     out_directory = repo.build()
 
     # Serve generated site
