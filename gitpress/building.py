@@ -1,5 +1,5 @@
 import os
-from .repository import require_repo, presentation_files
+from .repositories import require_repo, presentation_files
 from .helpers import copy_files, remove_directory
 
 

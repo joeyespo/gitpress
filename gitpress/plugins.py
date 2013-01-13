@@ -1,5 +1,5 @@
 from .config import Config
-from .repository import require_repo
+from .repositories import require_repo
 
 
 def list_plugins(directory=None):

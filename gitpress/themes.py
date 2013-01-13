@@ -1,6 +1,6 @@
 import os
 from .exceptions import ThemeNotFoundError
-from .repository import require_repo
+from .repositories import require_repo
 from .config import Config
 
 

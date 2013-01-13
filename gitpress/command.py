@@ -28,7 +28,7 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
-from .repository import init, require_repo
+from .repositories import init, require_repo
 from .previewing import preview
 from .building import build
 from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
