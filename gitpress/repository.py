@@ -5,6 +5,7 @@ from .config import Config
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
     InvalidRepositoryError, ThemeNotFoundError
 from .templates import default_template, resolve_template
+from .presenter import Presenter
 from .plugin import PluginRequirement
 
 
@@ -25,6 +26,7 @@ class Repository(object):
             raise InvalidRepositoryError(directory, 'Config file not found: ' + config_file)
 
         config = Config(config_file)
+        presenter = Presenter.resolve(presenter)
 
         self.directory = directory
         self.content_directory = content_directory

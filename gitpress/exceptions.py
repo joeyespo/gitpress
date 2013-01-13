@@ -50,3 +50,25 @@ class NotADirectoryError(Exception):
         super(NotADirectoryError, self).__init__(
             'Expected a directory, found a file instead at ' + directory)
         self.directory = directory
+
+
+class PresenterNotFoundError(Exception):
+    """Indicates a presenter with the given name could not be found."""
+    def __init__(self, presenter):
+        super(PresenterNotFoundError, self).__init__(
+            'Presenter %s could not be found.' % repr(presenter))
+        self.presenter = presenter
+
+
+class BuildUnsupportedError(Exception):
+    """Indicates the current presenter does not support building."""
+    def __init__(self):
+        super(BuildUnsupportedError, self).__init__(
+            'The current presenter does not support building.')
+
+
+class ThemesNotSupportedException(Exception):
+    """Indicates the current presenter does not support themes."""
+    def __init__(self):
+        super(ThemesNotSupportedException, self).__init__(
+            'The current presenter does not support themes.')
