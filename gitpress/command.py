@@ -28,9 +28,9 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
-from .repositories import init, require_repo
+from .repositories import require_repo
+from .repository import Repository
 from .previewing import preview
-from .building import build
 from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
 from .themes import list_themes, use_theme
 from .helpers import yes_or_no
@@ -64,8 +64,8 @@ def execute(args):
 
     if args['init']:
         try:
-            repo = init(args['<directory>'])
-            info('Initialized Gitpress repository in', repo)
+            repo = Repository.init(args['<directory>'])
+            info('Initialized Gitpress repository in', repo.directory)
         except RepositoryAlreadyExistsError as ex:
             info(ex)
         return 0

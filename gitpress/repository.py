@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-from .config import Config
+from .config import config_file
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
     InvalidRepositoryError
 from .building import build
@@ -17,18 +17,18 @@ class Repository(object):
             content_directory = os.path.join(directory, '..')
         directory = os.path.abspath(directory)
         content_directory = os.path.abspath(content_directory)
-        config_file = os.path.join(directory, Config.config_file)
+        config_path = os.path.join(directory, config_file)
 
         if not os.path.isdir(directory):
             raise RepositoryNotFoundError(directory)
-        if not os.path.exists(config_file):
-            raise InvalidRepositoryError(directory, 'Config file not found: ' + config_file)
+        if not os.path.exists(config_path):
+            raise InvalidRepositoryError(directory, 'Config file not found: ' + config_path)
 
-        config = Config(config_file)
+        # TODO: config = Config(config_file)
 
         self.directory = directory
         self.content_directory = content_directory
-        self.config = config
+        # TODO: self.config = config
         self.presenter = presenter
 
     default_directory = '.gitpress'
