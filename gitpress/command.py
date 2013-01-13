@@ -78,15 +78,15 @@ def execute(args):
         repo = GitpressRepository.from_content(directory)
         return repo.preview(host=host, port=port)
 
-    repo = GitpressRepository.from_content(args['<directory>'])
-
     if args['build']:
+        repo = GitpressRepository.from_content(args['<directory>'])
         info('Building site', os.path.abspath(args['<directory>'] or '.'))
         out_directory = repo.build(args['--out'])
         info('Site built in', os.path.abspath(out_directory))
         return 0
 
     if args['plugins']:
+        repo = GitpressRepository.from_content(args['<directory>'])
         plugin = args['<plugin>']
         if args['add']:
             added = repo.add_plugin(plugin)
@@ -110,6 +110,7 @@ def execute(args):
         return 0
 
     if args['themes']:
+        repo = GitpressRepository.from_content(args['<directory>'])
         theme = args['<theme>']
         if args['use']:
             try:
