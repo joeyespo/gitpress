@@ -1,7 +1,7 @@
 import os
 import SocketServer
 import SimpleHTTPServer
-from .building import build
+from .repository import Repository
 
 
 def preview(directory=None, host=None, port=None, watch=True):
@@ -13,7 +13,8 @@ def preview(directory=None, host=None, port=None, watch=True):
     # TODO: admin interface
 
     # TODO: use cache_only to keep from modifying output directly
-    out_directory = build(directory)
+    repo = Repository.from_content(directory)
+    out_directory = repo.build()
 
     # Serve generated site
     os.chdir(out_directory)
