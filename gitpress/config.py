@@ -122,10 +122,10 @@ class Config(object):
         values = self._read()
         return deepcopy(values) if self.cached else values
 
-    def write(self, values, overwrite=False, refresh=False):
+    def write(self, values, overwrite=False, overwrite_refreshed=False):
         """Updates or overwrites the configuration with the specified dictionary."""
         if not overwrite:
-            current = self.read(refresh)
+            current = self.read(overwrite_refreshed)
             current.update(values)
             values = current
         self._write(values)
