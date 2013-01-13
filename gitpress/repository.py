@@ -109,7 +109,7 @@ class Repository(object):
         raise NotImplementedError()
 
     def preview(self, host=None, port=None):
-        # TODO: return self.presenter.preview()
+        # TODO: handle custom servers
         from .previewer import preview
         return preview(self.content_directory, host, port)
 
