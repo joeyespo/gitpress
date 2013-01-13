@@ -79,15 +79,17 @@ class GitpressRepository(object):
             content_directory, repo_directory)
 
         # Check for existing repository
+        exists = True
         try:
             GitpressRepository(repo_directory, content_directory)
-            raise RepositoryAlreadyExistsError(content_directory, repo_directory)
         except RepositoryNotFoundError:
-            pass
+            exists = False
         except InvalidRepositoryError:
             pass
         except PresenterNotFoundError:
             pass
+        if exists:
+            raise RepositoryAlreadyExistsError(content_directory, repo_directory)
 
         # Initialize repository with specified template
         template_path = resolve_template(template)
