@@ -12,6 +12,7 @@ templates_directory = os.path.dirname(__file__)
 default_template = 'default'
 builtin_templates = [
     'default',
+    'external',
 ]
 
 
