@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+gitpress.presenter
+~~~~~~~~~~~~~~~~~~
+
+A presenter interprets directory-based formats to gather presentation components,
+including layouts, static and dynamic pages, scripts, and themes.
+
+:copyright: (c) 2013 by Joe Esposito.
+:license: MIT, see LICENSE for more details.
+"""
+
 from .plugin import Plugin
 from .exceptions import PresenterNotFoundError, BuildUnsupportedError, \
     ThemesNotSupportedException

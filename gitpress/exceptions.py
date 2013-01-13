@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+gitpress.exceptions
+~~~~~~~~~~~~~~~~~~~
+
+Defines the exceptions used throughout the package.
+
+:copyright: (c) 2013 by Joe Esposito.
+:license: MIT, see LICENSE for more details.
+"""
+
 import os
 
 
