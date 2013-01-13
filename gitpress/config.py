@@ -72,7 +72,12 @@ class Config(object):
         self._read()
 
     def get(self, key, default=None, expect=None, silent=False):
-        """Gets an individual value from the configuration, or default if not found."""
+        """\
+        Gets an individual value from the configuration, or default if not found.
+        If expect is given and the value is not an instance of 'expect', an
+        exception is raised. If silent is given, the default is returned instead of
+        raising an exception.
+        """
         values = self._read()
         value = values.get(key, default)
         if expect and key in values and not isinstance(value, expect):
