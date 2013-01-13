@@ -54,6 +54,8 @@ def main(argv=None):
         error(ex)
     except RepositoryNotFoundError as ex:
         error(ex)
+    except ConfigSchemaError as ex:
+        error('Could not modify config:', ex)
 
 
 def execute(args):
@@ -89,11 +91,7 @@ def execute(args):
     if args['plugins']:
         plugin = args['<plugin>']
         if args['add']:
-            try:
-                added = add_plugin(plugin)
-            except ConfigSchemaError as ex:
-                error('Could not modify config:', ex)
-                return 1
+            added = add_plugin(plugin)
             info(('Added plugin %s' if added else
                 'Plugin %s has already been added.') % repr(plugin))
         elif args['remove']:
@@ -102,10 +100,7 @@ def execute(args):
                 warning = 'Plugin %s contains settings. Remove?' % repr(plugin)
                 if not yes_or_no(warning):
                     return 0
-            try:
-                removed = remove_plugin(plugin)
-            except ConfigSchemaError as ex:
-                error('Could not modify config:', ex)
+            removed = remove_plugin(plugin)
             info(('Removed plugin %s' if removed else
                 'Plugin %s has already been removed.') % repr(plugin))
         else:
@@ -119,9 +114,6 @@ def execute(args):
         if args['use']:
             try:
                 switched = use_theme(theme)
-            except ConfigSchemaError as ex:
-                error('Could not modify config:', ex)
-                return 1
             except ThemeNotFoundError as ex:
                 error(ex)
                 return 1
