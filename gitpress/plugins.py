@@ -5,10 +5,7 @@ from .repository import require_repo
 def list_plugins(directory=None):
     """Gets a list of the installed themes."""
     repo = require_repo(directory)
-    plugins = Config(repo).get('plugins')
-    if not plugins or not isinstance(plugins, dict):
-        return None
-    return plugins.keys()
+    return Config(repo).get('plugins', default={}, expect=dict, silent=True).keys()
 
 
 def add_plugin(plugin, directory=None):
