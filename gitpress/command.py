@@ -133,7 +133,7 @@ def execute(args):
             try:
                 removed = remove_plugin(plugin)
             except ConfigSchemaError as ex:
-                error('Error: Could not modify config:', ex)
+                error('Could not modify config:', ex)
             info(('Removed plugin %s' if removed else
                 'Plugin %s has already been removed.') % repr(plugin))
         else:
