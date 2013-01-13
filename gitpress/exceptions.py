@@ -22,6 +22,13 @@ class RepositoryNotFoundError(Exception):
         self.directory = directory
 
 
+class InvalidRepositoryError(Exception):
+    """Indicates a Gitpress repository was found, but not valid."""
+    def __init__(self, repository_directory, message):
+        super(InvalidRepositoryError, self).__init__(message)
+        self.directory = os.path.abspath(repository_directory)
+
+
 class ConfigSchemaError(Exception):
     """Indicates the configuration does not conform to the expected types."""
     def __init__(self, message):
