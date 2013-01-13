@@ -28,10 +28,8 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
-from .repositories import require_repo
 from .repository import Repository
 from .previewing import preview
-from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
 from .themes import list_themes, use_theme
 from .helpers import yes_or_no
 from . import __version__
@@ -90,22 +88,25 @@ def execute(args):
 
     if args['plugins']:
         plugin = args['<plugin>']
+        repo = Repository.from_content(args['<directory>'])
         if args['add']:
-            added = add_plugin(plugin)
+            added = repo.add_plugin(plugin)
             info(('Added plugin %s' if added
                 else 'Plugin %s has already been added.') % repr(plugin))
         elif args['remove']:
-            settings = get_plugin_settings(plugin)
+            plugins = repo.plugins()
+            settings = plugins[plugin].settings if plugin in plugins else None
             if not args['-f'] and settings and isinstance(settings, dict):
                 warning = 'Plugin %s contains settings. Remove?' % repr(plugin)
                 if not yes_or_no(warning):
                     return 0
-            removed = remove_plugin(plugin)
+            removed = repo.remove_plugin(plugin)
             info(('Removed plugin %s' if removed
                 else 'No plugin %s found to remove.') % repr(plugin))
         else:
-            plugins = list_plugins()
-            info('Installed plugins:\n  ' + '\n  '.join(plugins) if plugins
+            plugins = repo.plugins()
+            names = [plugin.name for plugin in plugins]
+            info('Installed plugins:\n  ' + '\n  '.join(names) if plugins
                 else 'No plugins installed.')
         return 0
 

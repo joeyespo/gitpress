@@ -6,6 +6,7 @@ from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
     InvalidRepositoryError
 from .building import build
 from .templates import default_template, resolve_template
+from .plugin import PluginRequirement
 
 
 class Repository(object):
@@ -24,11 +25,11 @@ class Repository(object):
         if not os.path.exists(config_file):
             raise InvalidRepositoryError(directory, 'Config file not found: ' + config_file)
 
-        # TODO: config = Config(config_file)
+        config = Config(directory)
 
         self.directory = directory
         self.content_directory = content_directory
-        # TODO: self.config = config
+        self.config = config
         self.presenter = presenter
 
     default_directory = '.gitpress'
@@ -85,3 +86,28 @@ class Repository(object):
         """Initiates a new isolated build and returns the output directory."""
         # TODO: return self.presenter.build()
         return build(self.content_directory, out_directory)
+
+    def plugins(self):
+        """Gets a list of the installed themes."""
+        plugins = self.config.get('plugins', {}, expect=dict, silent=True)
+        return [PluginRequirement(plugin, plugins[plugin]) for plugin in plugins]
+
+    def add_plugin(self, plugin):
+        """Adds the specified plugin. This returns False if it was already added."""
+        plugins = self.config.get('plugins', {}, expect=dict)
+        if plugin in plugins:
+            return False
+
+        plugins[plugin] = {}
+        self.config.set('plugins', plugins)
+        return True
+
+    def remove_plugin(self, plugin):
+        """Removes the specified plugin."""
+        plugins = self.config.get('plugins', {}, expect=dict)
+        if plugin not in plugins:
+            return False
+
+        del plugins[plugin]
+        self.config.set('plugins', plugins)
+        return True
