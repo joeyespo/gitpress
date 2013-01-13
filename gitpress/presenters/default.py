@@ -10,9 +10,9 @@ from ..presenter import Presenter
 
 class DefaultPresenter(Presenter):
     """Runs an external application in a separate process to present the content."""
-    def __init__(self):
+    def __init__(self, repository):
         # TODO: read config
-        super(DefaultPresenter, self).__init__()
+        super(DefaultPresenter, self).__init__(repository)
 
     def build(self, out_directory=None):
         """Builds the Gitpress site."""

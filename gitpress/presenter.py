@@ -5,8 +5,9 @@ from .exceptions import PresenterNotFoundError, BuildUnsupportedError, \
 
 class Presenter(Plugin):
     """Interprets the directory to present the site."""
-    def __init__(self, supports_themes=True, custom_server=False, custom_build=False):
+    def __init__(self, repository, supports_themes=True, custom_server=False, custom_build=False):
         super(Presenter, self).__init__()
+        self.repository = repository
         self.supports_themes = supports_themes
         self.custom_server = custom_server
         self.custom_build = custom_build
@@ -57,7 +58,7 @@ class Presenter(Plugin):
         self.ensure_build()
         return out_directory
 
-    def read(self, presentation_directory=None):
+    def read(self):
         """Reads the presentation directory."""
         # TODO: implement
         raise NotImplementedError()
