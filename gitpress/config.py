@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+gitpress.config
+~~~~~~~~~~~~~~~
+
+Module for managing config.
+
+:copyright: (c) 2013 by Joe Esposito.
+:license: MIT, see LICENSE for more details.
+"""
+
 import errno
 from copy import deepcopy
 from collections import OrderedDict
