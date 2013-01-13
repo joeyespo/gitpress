@@ -5,7 +5,7 @@ from .config import Config
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
     InvalidRepositoryError, ThemeNotFoundError
 from .building import build
-from .previewing import preview
+from .previewer import preview
 from .templates import default_template, resolve_template
 from .plugin import PluginRequirement
 
