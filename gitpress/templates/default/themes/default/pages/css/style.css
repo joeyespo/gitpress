@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font: 16px Arial, Georgia, serif;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+a {
+  color: #38f;
+  font-size: 14px;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 16px 0;
+}
+
+/* TODO: style the navigation */
+nav {
+  display: none;
+}
+
+.site {
+  margin: 4px auto;
+  width: 500px;
+}
+
+.site header {
+  padding: 12px 0;
+}
+
+.index-page article {
+  margin-top: 24px;
+}
+
+.index-page article h1 {
+  font-size: 24px;
+}
+
+.generic-page {
+  margin-top: 24px;
+}

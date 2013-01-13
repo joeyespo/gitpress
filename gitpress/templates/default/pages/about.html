@@ -1,0 +1,17 @@
+{% match "about.md" %}
+
+{% extends "_base.html" %}
+
+{% block title %}{{ page.title }} - {{ site_title }}{% endblock %}
+
+{% block page_title %}About {{ site_title }}{% endblock %}
+
+{% block page %}
+  <div class="about-page">
+    <div class="about-page-content">
+      {{ page.content|safe }}
+    </div>
+
+    <p><a href="/">Back</a></p>
+  </div>
+{% endblock %}

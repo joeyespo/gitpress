@@ -1,0 +1,17 @@
+{% match page %}
+
+{% extends "_base.html" %}
+
+{% block title %}{{ page.title }} - {{ site_title }}{% endblock %}
+
+{% block page_title %}{{ site_title }}{% endblock %}
+
+{% block page %}
+  <div class="generic-page">
+    <div class="generic-page-content">
+      {{ page.content|safe }}
+    </div>
+
+    <p><a href="/">Back</a></p>
+  </div>
+{% endblock %}

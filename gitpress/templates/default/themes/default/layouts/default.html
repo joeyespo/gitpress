@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Gitpress Blog{% endblock %}</title>
+  <link rel="stylesheet" href="css/style.css" />
+  {% block styles %}{% endblock %}
+  {% block priority_scripts %}{% endblock %}
+</head>
+<body>
+  <div class="site">
+    <section>
+      <header>
+        <h1>{% block page_title %}{{ self.title() }}{% endblock %}</h1>
+      </header>
+
+      <nav>
+        <ul>
+          <li> <a href="/">Home</a> </li>
+        </ul>
+      </nav>
+
+      <div class="page">
+        {% block page %}{% endblock %}
+      </div>
+    </section>
+  </div>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

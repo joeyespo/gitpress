@@ -1,0 +1,9 @@
+{
+    "gitpress": "0.1",
+    "name": "default"
+    "title": "Default Theme",
+    "author": "Joe Esposito",
+    "version": "0.1",
+    "plugins": {},
+    "render": []
+}

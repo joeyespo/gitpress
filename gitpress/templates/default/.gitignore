@@ -1,0 +1,7 @@
+# Build files
+.build
+
+# OS-specific files
+.DS_Store
+Desktop.ini
+Thumbs.db

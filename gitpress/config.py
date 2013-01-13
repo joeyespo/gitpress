@@ -16,7 +16,7 @@ class Config(object):
         self.cached = cached
         self._cache = None
 
-    config_file = '_config.json'
+    config_file = 'config.json'
     theme_config_file = 'theme.json'
 
     @staticmethod
