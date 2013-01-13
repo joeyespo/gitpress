@@ -19,7 +19,8 @@ class RepositoryNotFoundError(Exception):
 
 class ConfigSchemaError(Exception):
     """Indicates the configuration does not conform to the expected types."""
-    pass
+    def __init__(self, message):
+        super(ConfigSchemaError, self).__init__(message)
 
 
 class ThemeNotFoundError(Exception):
