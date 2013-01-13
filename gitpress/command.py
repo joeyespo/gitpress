@@ -102,7 +102,7 @@ def execute(args):
                     return 0
             removed = remove_plugin(plugin)
             info(('Removed plugin %s' if removed
-                else 'Plugin %s has already been removed.') % repr(plugin))
+                else 'No plugin %s found to remove.') % repr(plugin))
         else:
             plugins = list_plugins()
             info('Installed plugins:\n  ' + '\n  '.join(plugins) if plugins
