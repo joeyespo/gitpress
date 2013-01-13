@@ -15,3 +15,9 @@ class PluginRequirement(object):
     def __init__(self, name, settings={}):
         self.name = name
         self.settings = settings
+
+
+class Plugin(object):
+    """Implements a Gitpress plugin."""
+    def __init__(self):
+        pass
