@@ -51,7 +51,7 @@ def main(argv=None):
     try:
         return execute(args)
     except RepositoryNotFoundError as ex:
-        error('No Gitpress repository found at', ex.directory)
+        error(ex)
 
 
 def execute(args):
@@ -67,7 +67,7 @@ def execute(args):
             repo = init(args['<directory>'])
             info('Initialized Gitpress repository in', repo)
         except RepositoryAlreadyExistsError as ex:
-            info('Gitpress repository already exists in', ex.repo)
+            info(ex)
         return 0
 
     if args['preview']:
@@ -96,7 +96,7 @@ def execute(args):
                 error('Could not modify config:', ex)
                 return 1
             except ThemeNotFoundError as ex:
-                error('Theme %s is not currently installed.' % repr(theme))
+                error(ex)
                 return 1
             info('Switched to theme %s' if switched else 'Already using %s' % repr(theme))
         elif args['install']:
