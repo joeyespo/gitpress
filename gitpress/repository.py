@@ -26,12 +26,13 @@ class Repository(object):
             raise InvalidRepositoryError(directory, 'Config file not found: ' + config_file)
 
         config = Config(config_file)
-        presenter = Presenter.resolve(presenter)
 
         self.directory = directory
         self.content_directory = content_directory
         self.config = config
-        self.presenter = presenter
+        self.presenter = None
+
+        self.presenter = Presenter.resolve(self, presenter)
 
     default_directory = '.gitpress'
     themes_directory = 'themes'

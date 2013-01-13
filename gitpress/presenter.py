@@ -15,7 +15,7 @@ class Presenter(Plugin):
     default_presenter = 'default'
 
     @staticmethod
-    def resolve(presenter=None):
+    def resolve(repository, presenter=None):
         """\
         Returns a presenter object from the specified name.
         If a Presenter object is provided, it will be returned.
@@ -29,7 +29,7 @@ class Presenter(Plugin):
         if not isinstance(presenter, basestring):
             raise TypeError('Presenter expected to be a string or a Presenter object, got %s.' % repr(type(presenter)))
         if presenter in builtin_presenters:
-            return builtin_presenters[presenter]()
+            return builtin_presenters[presenter](repository)
         # TODO: resolve import names
         raise PresenterNotFoundError(presenter)
 
