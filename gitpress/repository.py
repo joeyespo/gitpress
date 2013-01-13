@@ -39,7 +39,8 @@ class Repository(object):
     @staticmethod
     def from_content(content_directory=None, repo_directory=None, presenter=None):
         """Returns the repository of the specified content directory."""
-        repo_directory = Repository.resolve(content_directory, repo_directory)
+        if content_directory is None:
+            content_directory = '.'
         return Repository(repo_directory, content_directory, presenter)
 
     @staticmethod
