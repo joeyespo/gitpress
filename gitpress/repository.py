@@ -3,7 +3,7 @@ import shutil
 import subprocess
 from .config import Config
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
-    InvalidRepositoryError, ThemeNotFoundError
+    InvalidRepositoryError, PresenterNotFoundError, ThemeNotFoundError
 from .templates import default_template, resolve_template
 from .presenter import Presenter
 from .plugin import PluginRequirement
@@ -67,8 +67,16 @@ class Repository(object):
         content_directory, repo_directory = Repository.resolve(
             content_directory, repo_directory)
 
-        if os.path.isdir(repo_directory):
+        # Check for existing repository
+        try:
+            Repository(repo_directory, content_directory)
             raise RepositoryAlreadyExistsError(content_directory, repo_directory)
+        except RepositoryNotFoundError:
+            pass
+        except InvalidRepositoryError:
+            pass
+        except PresenterNotFoundError:
+            pass
 
         # Initialize repository with specified template
         template_path = resolve_template(template)
