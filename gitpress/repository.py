@@ -26,7 +26,7 @@ class Repository(object):
         if not os.path.exists(config_file):
             raise InvalidRepositoryError(directory, 'Config file not found: ' + config_file)
 
-        config = Config(directory)
+        config = Config(config_file)
 
         self.directory = directory
         self.content_directory = content_directory

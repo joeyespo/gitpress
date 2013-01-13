@@ -1,4 +1,3 @@
-import os
 import errno
 from copy import deepcopy
 from collections import OrderedDict
@@ -11,18 +10,20 @@ from .exceptions import ConfigSchemaError
 
 class Config(object):
     """Reads and writes configuration files."""
-    def __init__(self, repo_directory, cached=True):
-        self.path = os.path.join(repo_directory, Config.config_file)
+    def __init__(self, config_file, cached=True):
+        # TODO: validate file
+        self.config_file = config_file
         self.cached = cached
         self._cache = None
 
     config_file = '_config.json'
+    theme_config_file = 'theme.json'
 
     @staticmethod
-    def read_dict(path):
+    def read_dict(config_file):
         """Reads the configuration from disk as a dictionary."""
         try:
-            with open(path, 'r') as f:
+            with open(config_file, 'r') as f:
                 return json.load(f, object_pairs_hook=OrderedDict)
         except IOError as ex:
             if ex != errno.ENOENT:
@@ -30,11 +31,11 @@ class Config(object):
         return {}
 
     @staticmethod
-    def write_dict(path, values):
+    def write_dict(config_file, values):
         """Writes the specified dictionary configuration to disk."""
         contents = json.dumps(values, indent=4, separators=(',', ': ')) + '\n'
         try:
-            with open(path, 'w') as f:
+            with open(config_file, 'w') as f:
                 f.write(contents)
             return True
         except IOError as ex:
@@ -46,7 +47,7 @@ class Config(object):
         """Reads or re-reads the configuration if out of date."""
         if self._cache is not None:
             return self._cache
-        values = Config.read_dict(self.path)
+        values = Config.read_dict(self.config_file)
         if self.cached:
             self._cache = values
         return values
@@ -55,7 +56,7 @@ class Config(object):
         """Writes the configuration to the disk and cache."""
         if self.cached:
             self._cache = values
-        Config.write_dict(self.path, values)
+        Config.write_dict(self.config_file, values)
 
     def invalidate(self):
         """Invalidates the cache, causing it to reload on the next read."""
