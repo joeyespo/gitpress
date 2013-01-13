@@ -20,6 +20,4 @@ def use_theme(theme, directory=None):
     repo = require_repo(directory)
     if theme not in list_themes(directory):
         raise ThemeNotFoundError(theme)
-
-    old_theme = Config(repo).set('theme', theme)
-    return old_theme != theme
+    return Config(repo).set('theme', theme) != theme
