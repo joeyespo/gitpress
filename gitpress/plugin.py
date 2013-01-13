@@ -13,6 +13,7 @@ Plugins are installable behavioral components to customize the build.
 class PluginRequirement(object):
     """Contains information about a particular plugin installed during a build."""
     def __init__(self, name, settings={}):
+        super(PluginRequirement, self).__init__()
         self.name = name
         self.settings = settings
 
@@ -20,4 +21,4 @@ class PluginRequirement(object):
 class Plugin(object):
     """Implements a Gitpress plugin."""
     def __init__(self):
-        pass
+        super(Plugin, self).__init__()
