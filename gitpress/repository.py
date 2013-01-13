@@ -23,7 +23,7 @@ from .plugin import PluginRequirement
 class Repository(object):
     """A Gitpress repository, which manages the containing Site."""
     def __init__(self, directory=None, content_directory=None, presenter=None):
-        if directory is None:
+        if directory is None and content_directory is None:
             directory = '.'
         content_directory, directory = Repository.resolve(
             content_directory, directory)
