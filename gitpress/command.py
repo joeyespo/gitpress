@@ -92,8 +92,8 @@ def execute(args):
         plugin = args['<plugin>']
         if args['add']:
             added = add_plugin(plugin)
-            info(('Added plugin %s' if added else
-                'Plugin %s has already been added.') % repr(plugin))
+            info(('Added plugin %s' if added
+                else 'Plugin %s has already been added.') % repr(plugin))
         elif args['remove']:
             settings = get_plugin_settings(plugin)
             if not args['-f'] and settings and isinstance(settings, dict):
@@ -101,12 +101,12 @@ def execute(args):
                 if not yes_or_no(warning):
                     return 0
             removed = remove_plugin(plugin)
-            info(('Removed plugin %s' if removed else
-                'Plugin %s has already been removed.') % repr(plugin))
+            info(('Removed plugin %s' if removed
+                else 'Plugin %s has already been removed.') % repr(plugin))
         else:
             plugins = list_plugins()
-            info('Installed plugins:\n  ' + '\n  '.join(plugins) if plugins else
-                'No plugins installed.')
+            info('Installed plugins:\n  ' + '\n  '.join(plugins) if plugins
+                else 'No plugins installed.')
         return 0
 
     if args['themes']:
@@ -117,7 +117,8 @@ def execute(args):
             except ThemeNotFoundError as ex:
                 error(ex)
                 return 1
-            info('Switched to theme %s' if switched else 'Already using %s' % repr(theme))
+            info(('Switched to theme %s' if switched
+                else 'Already using %s') % repr(theme))
         elif args['install']:
             # TODO: implement
             raise NotImplementedError()
@@ -126,11 +127,8 @@ def execute(args):
             raise NotImplementedError()
         else:
             themes = list_themes()
-            if themes:
-                info('Installed themes:')
-                info('  ' + '\n  '.join(themes))
-            else:
-                info('No themes installed.')
+            info('Installed themes:\n  ' + '\n  '.join(themes) if themes
+                else 'No themes installed.')
         return 0
 
     return 1
