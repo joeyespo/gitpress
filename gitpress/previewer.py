@@ -10,9 +10,10 @@ def preview(directory=None, host=None, port=None, watch=True):
     host = host or '127.0.0.1'
     port = port or 5000
 
-    # TODO: admin interface
+    # TODO: Admin interface
 
-    # TODO: use cache_only to keep from modifying output directly
+    # TODO: Use cache_only to keep from modifying output directly
+    # TODO: Allow previewing of site without first building
     repo = Repository.from_content(directory)
     out_directory = repo.build()
 
