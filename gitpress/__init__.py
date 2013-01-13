@@ -4,7 +4,7 @@ Gitpress
 
 Blissful blogging for hackers.
 
-:copyright: (c) 2012 by Joe Esposito.
+:copyright: (c) 2013 by Joe Esposito.
 :license: MIT, see LICENSE for more details.
 """
 
