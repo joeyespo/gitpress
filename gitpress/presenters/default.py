@@ -14,6 +14,6 @@ class DefaultPresenter(Presenter):
         # TODO: read config
         super(DefaultPresenter, self).__init__()
 
-    def build(self):
+    def build(self, out_directory=None):
         """Builds the Gitpress site."""
         # TODO: implement
