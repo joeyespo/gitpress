@@ -93,9 +93,7 @@ class Repository(object):
 
     def build(self, out_directory=None, virtualenv=True):
         """Initiates a new isolated build and returns the output directory."""
-        # TODO: return self.presenter.build()
-        from .building import build
-        return build(self.content_directory, out_directory)
+        return self.presenter.build(out_directory)
 
     def plugins(self):
         """Gets a list of the installed themes."""

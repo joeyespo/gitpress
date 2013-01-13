@@ -13,6 +13,7 @@ class Presenter(Plugin):
         self.custom_build = custom_build
 
     default_presenter = 'default'
+    default_output_directory = '_site'
 
     @staticmethod
     def resolve(repository, presenter=None):
