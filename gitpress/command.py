@@ -28,7 +28,7 @@ import sys
 from docopt import docopt
 from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
-from .repository import Repository
+from .repository import GitpressRepository
 from .helpers import yes_or_no
 from . import __version__
 
@@ -64,7 +64,7 @@ def execute(args):
 
     if args['init']:
         try:
-            repo = Repository.init(args['<directory>'])
+            repo = GitpressRepository.init(args['<directory>'])
             info('Initialized Gitpress repository in', repo.directory)
         except RepositoryAlreadyExistsError as ex:
             info(ex)
@@ -75,10 +75,10 @@ def execute(args):
         host, port = split_address(address)
         if address and not host and not port:
             error('Invalid address', repr(address))
-        repo = Repository.from_content(directory)
+        repo = GitpressRepository.from_content(directory)
         return repo.preview(host=host, port=port)
 
-    repo = Repository.from_content(args['<directory>'])
+    repo = GitpressRepository.from_content(args['<directory>'])
 
     if args['build']:
         info('Building site', os.path.abspath(args['<directory>'] or '.'))

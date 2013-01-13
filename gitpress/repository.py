@@ -20,12 +20,12 @@ from .presenter import Presenter
 from .plugin import PluginRequirement
 
 
-class Repository(object):
+class GitpressRepository(object):
     """A Gitpress repository, which manages the containing Site."""
     def __init__(self, directory=None, content_directory=None, presenter=None):
         if directory is None and content_directory is None:
             directory = '.'
-        content_directory, directory = Repository.resolve(
+        content_directory, directory = GitpressRepository.resolve(
             content_directory, directory)
         config_file = os.path.join(directory, Config.config_file)
 
@@ -49,10 +49,10 @@ class Repository(object):
 
     @staticmethod
     def from_content(content_directory=None, repo_directory=None, presenter=None):
-        """Returns the repository of the specified content directory."""
+        """Returns the Gitpress repository of the specified content directory."""
         if content_directory is None:
             content_directory = '.'
-        return Repository(repo_directory, content_directory, presenter)
+        return GitpressRepository(repo_directory, content_directory, presenter)
 
     @staticmethod
     def resolve(content_directory=None, repo_directory=None):
@@ -62,7 +62,7 @@ class Repository(object):
         if content_directory is None:
             content_directory = '.'
         if repo_directory is None:
-            repo_directory = Repository.default_directory
+            repo_directory = GitpressRepository.default_directory
         content_directory = os.path.abspath(content_directory)
         return content_directory, os.path.join(content_directory, repo_directory)
 
@@ -75,12 +75,12 @@ class Repository(object):
         """
         if template is None:
             template = default_template
-        content_directory, repo_directory = Repository.resolve(
+        content_directory, repo_directory = GitpressRepository.resolve(
             content_directory, repo_directory)
 
         # Check for existing repository
         try:
-            Repository(repo_directory, content_directory)
+            GitpressRepository(repo_directory, content_directory)
             raise RepositoryAlreadyExistsError(content_directory, repo_directory)
         except RepositoryNotFoundError:
             pass
@@ -100,11 +100,11 @@ class Repository(object):
         subprocess.call(['git', 'add', '.'], cwd=repo_directory)
         subprocess.call(['git', 'commit', '-q', '-m', message], cwd=repo_directory)
 
-        return Repository(repo_directory, content_directory)
+        return GitpressRepository(repo_directory, content_directory)
 
     @staticmethod
     def clone(self, content_directory, url):
-        """Clones an existing repository to specified location."""
+        """Clones an existing Gitpress repository to specified location."""
         # TODO: implement
         raise NotImplementedError()
 
@@ -144,7 +144,7 @@ class Repository(object):
 
     def themes(self):
         """Gets a list of the installed themes."""
-        path = os.path.join(self.directory, Repository.themes_directory)
+        path = os.path.join(self.directory, GitpressRepository.themes_directory)
         return os.listdir(path) if os.path.isdir(path) else None
 
     def use_theme(self, theme):
