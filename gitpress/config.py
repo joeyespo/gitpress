@@ -1,5 +1,6 @@
 import os
 import errno
+from copy import deepcopy
 from collections import OrderedDict
 try:
     import simplejson as json
@@ -85,7 +86,7 @@ class Config(object):
                 return default
             raise ConfigSchemaError('Expected config variable %s to be type %s, got %s'
                 % (repr(key), repr(expect), repr(type(value))))
-        return value
+        return deepcopy(value) if self.cached else value
 
     def set(self, key, value, strict=True):
         """\
@@ -99,7 +100,7 @@ class Config(object):
         values = self._read()
         old = values.get(key)
         if old == value:
-            return old
+            return deepcopy(old) if self.cached else old
 
         # Check schema
         if strict and old is not None and not isinstance(old, type(value)):
@@ -109,7 +110,7 @@ class Config(object):
         # Set new value and save results
         values[key] = value
         self._write(values)
-        return old
+        return deepcopy(old) if self.cached else old
 
     def read(self, refresh=False):
         """\
@@ -118,7 +119,8 @@ class Config(object):
         """
         if refresh:
             self.invalidate()
-        return self._read().copy()
+        values = self._read()
+        return deepcopy(values) if self.cached else values
 
     def write(self, values, overwrite=False, refresh=False):
         """Updates or overwrites the configuration with the specified dictionary."""
