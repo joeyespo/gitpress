@@ -30,7 +30,6 @@ from path_and_address import resolve, split_address
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, ConfigSchemaError, ThemeNotFoundError, NotADirectoryError
 from .repository import Repository
 from .previewing import preview
-from .themes import list_themes, use_theme
 from .helpers import yes_or_no
 from . import __version__
 
@@ -112,22 +111,26 @@ def execute(args):
 
     if args['themes']:
         theme = args['<theme>']
+        repo = Repository.from_content(args['<directory>'])
         if args['use']:
             try:
-                switched = use_theme(theme)
+                switched = repo.use_theme(theme)
             except ThemeNotFoundError as ex:
                 error(ex)
                 return 1
             info(('Switched to theme %s' if switched
                 else 'Already using %s') % repr(theme))
         elif args['install']:
-            # TODO: implement
-            raise NotImplementedError()
+            installed = repo.install_theme(theme)
+            info(('Added theme %s' if installed
+                else 'Theme %s has already been added.') % repr(theme))
         elif args['uninstall']:
-            # TODO: implement
-            raise NotImplementedError()
+            # TODO: check for settings like with plugins?
+            uninstalled = repo.uninstall_theme(theme)
+            info(('Removed theme %s' if uninstalled
+                else 'No theme %s found to remove.') % repr(theme))
         else:
-            themes = list_themes()
+            themes = repo.themes()
             info('Installed themes:\n  ' + '\n  '.join(themes) if themes
                 else 'No themes installed.')
         return 0

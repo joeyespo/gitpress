@@ -3,7 +3,7 @@ import shutil
 import subprocess
 from .config import Config
 from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, \
-    InvalidRepositoryError
+    InvalidRepositoryError, ThemeNotFoundError
 from .building import build
 from .templates import default_template, resolve_template
 from .plugin import PluginRequirement
@@ -33,6 +33,8 @@ class Repository(object):
         self.presenter = presenter
 
     default_directory = '.gitpress'
+    themes_directory = 'themes'
+    default_theme = 'default'
 
     @staticmethod
     def from_content(content_directory=None, repo_directory=None, presenter=None):
@@ -111,3 +113,22 @@ class Repository(object):
         del plugins[plugin]
         self.config.set('plugins', plugins)
         return True
+
+    def themes(self):
+        """Gets a list of the installed themes."""
+        path = os.path.join(self.directory, Repository.themes_directory)
+        return os.listdir(path) if os.path.isdir(path) else None
+
+    def use_theme(self, theme):
+        """Switches to the specified theme. This returns False if switching to the already active theme."""
+        if theme not in self.themes():
+            raise ThemeNotFoundError(theme)
+        return self.config.set('theme', theme) != theme
+
+    def install_theme(self, theme):
+        # TODO: implement
+        raise NotImplementedError()
+
+    def uninstall_theme(self, theme):
+        # TODO: implement
+        raise NotImplementedError()
