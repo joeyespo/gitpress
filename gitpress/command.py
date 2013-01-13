@@ -82,9 +82,9 @@ def execute(args):
         return preview(directory, host=host, port=port)
 
     if args['build']:
-        require_repo(args['<directory>'])
+        repo = Repository.from_content(args['<directory>'])
         info('Building site', os.path.abspath(args['<directory>'] or '.'))
-        out_directory = build(args['<directory>'], args['--out'])
+        out_directory = repo.build(args['--out'])
         info('Site built in', os.path.abspath(out_directory))
         return 0
 
