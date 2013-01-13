@@ -9,8 +9,8 @@ Usage:
   gitpress preview [<directory>] [<address>]
   gitpress build [-q] [--out <dir>] [<directory>]
   gitpress init [-q] [<directory>]
-  gitpress themes [use <theme> | install <theme> | uninstall <theme>]
   gitpress plugins [add <plugin> | remove [-f] <plugin>]
+  gitpress themes [use <theme> | install <theme> | uninstall <theme>]
 
 Options:
   -h --help         Show this help.
@@ -31,8 +31,8 @@ from .exceptions import RepositoryAlreadyExistsError, RepositoryNotFoundError, C
 from .repository import init, require_repo
 from .previewing import preview
 from .building import build
-from .themes import list_themes, use_theme
 from .plugins import list_plugins, add_plugin, remove_plugin, get_plugin_settings
+from .themes import list_themes, use_theme
 from .helpers import yes_or_no
 from . import __version__
 
@@ -87,33 +87,6 @@ def execute(args):
         info('Site built in', os.path.abspath(out_directory))
         return 0
 
-    if args['themes']:
-        theme = args['<theme>']
-        if args['use']:
-            try:
-                switched = use_theme(theme)
-            except ConfigSchemaError as ex:
-                error('Could not modify config:', ex)
-                return 1
-            except ThemeNotFoundError as ex:
-                error(ex)
-                return 1
-            info('Switched to theme %s' if switched else 'Already using %s' % repr(theme))
-        elif args['install']:
-            # TODO: implement
-            raise NotImplementedError()
-        elif args['uninstall']:
-            # TODO: implement
-            raise NotImplementedError()
-        else:
-            themes = list_themes()
-            if themes:
-                info('Installed themes:')
-                info('  ' + '\n  '.join(themes))
-            else:
-                info('No themes installed.')
-        return 0
-
     if args['plugins']:
         plugin = args['<plugin>']
         if args['add']:
@@ -140,6 +113,33 @@ def execute(args):
             plugins = list_plugins()
             info('Installed plugins:\n  ' + '\n  '.join(plugins) if plugins else
                 'No plugins installed.')
+        return 0
+
+    if args['themes']:
+        theme = args['<theme>']
+        if args['use']:
+            try:
+                switched = use_theme(theme)
+            except ConfigSchemaError as ex:
+                error('Could not modify config:', ex)
+                return 1
+            except ThemeNotFoundError as ex:
+                error(ex)
+                return 1
+            info('Switched to theme %s' if switched else 'Already using %s' % repr(theme))
+        elif args['install']:
+            # TODO: implement
+            raise NotImplementedError()
+        elif args['uninstall']:
+            # TODO: implement
+            raise NotImplementedError()
+        else:
+            themes = list_themes()
+            if themes:
+                info('Installed themes:')
+                info('  ' + '\n  '.join(themes))
+            else:
+                info('No themes installed.')
         return 0
 
     return 1
