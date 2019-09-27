@@ -1,4 +1,4 @@
 path-and-address==0.2.0
 docopt==0.5
 markdown2==2.1.0
-flask==0.8
+flask==1.0
